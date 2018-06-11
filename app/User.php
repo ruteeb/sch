@@ -1,0 +1,31 @@
+<?php
+
+namespace App;
+
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class User extends Authenticatable
+{
+    use Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'username', 'full_name', 'email', 'password', 'image', 'phone', 'birthday', 'address', 'bsn_number',
+        'post_code', 'home_number', 'extension', 'street_name', 'city', 'province', 'start_borrow', 'end_borrow',
+        'start_residence', 'end_residence', 'active', 'status', 'level'
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+}

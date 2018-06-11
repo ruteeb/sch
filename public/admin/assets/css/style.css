@@ -1,0 +1,225 @@
+/********************************
+    Start Global
+*******************************/
+
+a, a:focus, a:active, a:hover {
+    outline: none;
+    text-decoration: none;
+}
+
+a {
+    transition: all .4s ease;
+}
+
+.clear {
+    clear: both;
+}
+
+/********************************
+    End Global
+*******************************/
+
+
+
+/********************************
+  Start insight
+*******************************/
+
+.insight {
+    border: 1px dashed #a6a6a6;
+    padding: 0px 10px 10px;
+    margin-bottom: 50px;
+}
+
+.insight h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding: 12px 0;
+    border-bottom: 1px dashed #a6a6a6;
+    font-size: 28px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.mar-bottom {
+    margin-bottom: 20px;
+}
+
+.dashboard-stat.white {
+    background-color: #f5f5f5;
+    margin-bottom: 0;
+}
+
+.dashboard-stat.white .visual>i {
+    opacity: .5;
+    color: #9BA0A3;
+}
+
+.count-num {
+    color: #f6931e;
+    font-weight: bold;
+}
+
+.items-add {
+    background-color: #f6931e;
+    display: block;
+    padding: 5px 3px;
+    text-align: center;
+    color: #fff;
+    transition: all .4s ease;
+}
+
+.items-add h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all .4s ease;
+    color: #fff;
+}
+
+/********************************
+  End insight
+*******************************/
+
+
+.portlet.light .portlet-body {
+    position: relative;
+}
+
+.delete-selected {
+    position: absolute;
+    top: 8px;
+    right: 0;
+    z-index: 99;
+}
+
+.form-body input.form-control,
+.form-body select.form-control {
+    height: 45px;
+}
+
+.form-body input[type="file"] {
+    padding-top: 11px;
+}
+
+.form-body textarea.form-control {
+    height: 150px;
+}
+
+.form-body .form-control:focus {
+    border-color: #666;
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+    vertical-align: middle;
+    text-align: center;
+}
+
+
+/*******************************
+Page View Details
+******************************/
+
+.item {
+    padding: 20px 0;
+    border-bottom: 1px dashed #ccc;
+}
+
+.item:last-child {
+    border-bottom: 0;
+}
+
+.item h4 {
+    color: #f6931e;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.item p {
+    color: #333;
+    display: block;
+    line-height: 25px;
+    margin-bottom: 0;
+    font-size: 16px;
+    padding-top: 7px;
+}
+
+.item img {
+    width: 200px;
+    margin-top: 10px;
+}
+
+.control-item {
+    margin-top: 50px;
+}
+
+.tagSpan {
+    background-color: #111;
+    color: #fff;
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.btn_news {
+    width: 120px;
+}
+
+.first_btn {
+    margin-bottom: 9px;
+}
+
+.view_news {
+    background-color: #36c6d3;
+    color: #fff;
+    padding: 3px 5px;
+    border-radius: 3px !important;
+    font-size: 13px;
+}
+
+.view_news:hover {
+    color: #111;
+}
+
+.comments {
+    position: relative;
+    margin-top: 30px;
+    padding: 70px 30px 20px;
+    border: 1px dashed #ccc;
+}
+
+.comments .delete-selected {
+    top: 16px;
+    right: 30px;
+}
+
+.video-rel {
+    position: relative;
+}
+
+.video-rel input {
+    padding-left: 150px;
+}
+
+.static-link {
+    position: absolute;
+    bottom: 2px;
+    left: 1px;
+    padding: 0 15px;
+    height: 42px;
+    line-height: 42px;
+    border-right: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.static-link p {
+    margin-bottom: 0;
+}
