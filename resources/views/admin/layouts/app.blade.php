@@ -111,6 +111,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item ">
+                    <a href="{{ url('admin/admins') }}" class="nav-link nav-toggle">
+                        <i class="fa fa-users"></i>
+                        <span class="title">Admins</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- END SIDEBAR -->
