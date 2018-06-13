@@ -35,8 +35,8 @@ xxx
                                 <div class="number">
                                     <span class="count-num" data-counter="counterup" data-value="3">3</span>
                                 </div>
-                                <div class="desc"> <strong>How To Use Repathajjjjjjjjjjj </strong> </div>
-                            </div>hhhh
+                                <div class="desc"> <strong>How To Use Repatha</strong> </div>
+                            </div>
                         </a>
                         <a class="items-add" href="http://localhost/repatha/admin/howtouserepatha/create">
                             <div class="add-item">
