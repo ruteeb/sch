@@ -223,3 +223,8 @@ Page View Details
 .static-link p {
     margin-bottom: 0;
 }
+
+.page-header.navbar .page-logo .logo-default {
+    margin: 4px 0 0;
+    width: 120px;
+}

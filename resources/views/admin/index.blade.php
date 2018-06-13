@@ -3,7 +3,6 @@
 @section('title')
     Oranje Ster
 @stop
-xxx
 @section('content')
     <div class="page-content">
         <div class="page-bar">
