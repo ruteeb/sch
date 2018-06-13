@@ -37,7 +37,7 @@ xxx
                                 </div>
                                 <div class="desc"> <strong>How To Use Repatha</strong> </div>
                             </div>
-                        </a>
+                        </a>ss
                         <a class="items-add" href="http://localhost/repatha/admin/howtouserepatha/create">
                             <div class="add-item">
                                 <h4><i class="fa fa-plus"></i> Add</h4>
