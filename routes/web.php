@@ -54,6 +54,16 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::post('admin/profile/update', 'ProfileController@update');
 
 
+        // Route Admins
+        Route::get('admin/admins', 'AdminsController@index');
+        Route::get('admin/admins/create', 'AdminsController@create');
+        Route::post('admin/admins/store', 'AdminsController@store');
+        Route::get('admin/admins/{id}/edit', 'AdminsController@edit');
+        Route::post('admin/admins/{id}/update', 'AdminsController@update');
+        Route::get('admin/admins/{id}/delete', 'AdminsController@destroy');
+        Route::post('admin/admins/multidelete', 'AdminsController@multidelete');
+
+
 
     });
 
