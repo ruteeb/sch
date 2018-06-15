@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use ReflectionClass;
+use App\Model\Lessons;
 use Twilio\Jwt\AccessToken;
 use Twilio\Jwt\Grants\VideoGrant;
 
@@ -18,7 +20,7 @@ use Twilio\Jwt\Grants\VideoGrant;
 class VideoRoomsController extends Controller
 {
     
-       protected $sid;
+    protected $sid;
     protected $token;
     protected $key;
     protected $secret;
@@ -51,24 +53,57 @@ class VideoRoomsController extends Controller
        
        $client = new Client($this->sid, $this->token);
      
-       $exists = $client->video->rooms->read([ 'uniqueName' => $request->roomName]);
+       $exists = $client->video->rooms->read([ 'uniqueName' => $request->roomName.$request->roomName_extention]);
+        
+         
+       if(auth::user()['level']== "teacher" || Auth::guard('admin')->check() ){
+      
+            if (empty($exists)) {
+                $resultCreation = $client->video->rooms->create([
+                    'uniqueName' => $request->roomName.$request->roomName_extention,
+                    'type' => 'group',
+                    'recordParticipantsOnConnect' => true
+                ]);
+            
+                \Log::debug("created new room: ".$request->roomName.$request->roomName_extention);
+                 
+            }else{
+                
+                
+            }
+
+
+            // echo "<pre>";
+            // echo $request->roomName_extention."<br>";
+            // echo  $request->roomName.$request->roomName_extention."<br>";
+            // $room = $client->video->rooms($request->roomName.$request->roomName_extention)->fetch();
+            // echo $room->sid."<br>";
      
-       if (empty($exists)) {
-           $client->video->rooms->create([
-               'uniqueName' => $request->roomName,
-               'type' => 'group',
-               'recordParticipantsOnConnect' => true
-           ]);
-     
-           \Log::debug("created new room: ".$request->roomName);
-       }
+            $inputs = array ();
+            $inputs['sid'] = $room->sid;
+            $inputs['title'] = $request->roomName.$request->roomName_extention;
+            $inputs['teacher_id'] = auth::user()['id'];
+            Lessons::create($inputs);
+
+        }else{
+            echo "you don't have permisions to create a lesson";
+        }
+
        
+
      
+
+
        return redirect()->action('VideoRoomsController@joinRoom', [
-           'roomName' => $request->roomName
+           'roomName' => $request->roomName.$request->roomName_extention
        ]); 
     } 
+    
 
+
+
+
+    
     public function joinRoom($roomName)   
     {  
         // A unique identifier for this user

@@ -104,6 +104,7 @@
                     {{ csrf_field() }}
                 <label>Room Name</label>
                 <input type="text" name="roomName" placeholder="Room Name">
+                <input type="text" name="roomName_extention" placeholder="Extenton" value="_ona_{{auth::user()['id']}}" readonly="readonly" >
                 <input type="submit" name="submit" value="Go">
                 </form>
 
