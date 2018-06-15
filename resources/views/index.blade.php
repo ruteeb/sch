@@ -103,10 +103,26 @@
                 <form action="room/create" method="POST">
                     {{ csrf_field() }}
                 <label>Room Name</label>
-                <input type="text" name="roomName" placeholder="Room Name">
+               
+                <div>
+                    <select  name="courcesID" id="courcesID" required>
+                        <option value=""></option>
+                        <option value="1">ONA</option>
+                        <option value="2">A2 leesen</option>
+                    </select>
+                    <select  name="classID" id="classID" required>
+                            <option value=""></option>
+                            <option value="1">may</option>
+                            <option value="2">augustus</option>
+                        </select>
+                </div>
+                <br>
+                <input type="text" name="roomName" id="roomName" placeholder="Room Name" disabled="true" required>
+                <input type="text" name="roomName_extention" id="roomName_extention" placeholder="Extention" readonly="readonly"  required  >
+                
                 <input type="submit" name="submit" value="Go">
                 </form>
-
+                
                 
 
 
@@ -135,6 +151,25 @@
 //                                ->fetch();
 
 // print($recording->trackName);?>
+<script
+src="https://code.jquery.com/jquery-3.3.1.min.js"
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+<script>
+    $( "#classID" ).change(function() {
+        
+        $( "#roomName" ).prop( "disabled", false );
+
+
+        $('#roomName_extention').attr('readonly', false);
+            courcesID = $( "#courcesID option:selected" ).html()  ;
+            classID = $( "#classID option:selected" ).html()  ;
+            
+        $( "#roomName_extention" ).val(courcesID+"_"+classID+'_'+{{auth::user()['id']}});
+        $('#roomName_extention').attr('readonly', true);
+    });
+    // /important from somur: we have to set condtions 
+</script>
         </div>
     </body>
 </html>
