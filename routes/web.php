@@ -59,3 +59,22 @@ Route::group(['namespace' => 'Admin'], function () {
 
 
 });
+
+
+
+
+
+
+/**************************************
+ * Start Somur Controllers for twilio
+**************************************/
+Route::get('/', "VideoRoomsController@index");
+Route::prefix('room')->middleware('auth')->group(function() {
+   Route::get('join/{roomName}', 'VideoRoomsController@joinRoom');
+   Route::post('create', 'VideoRoomsController@createRoom');
+});
+
+
+/**************************************
+ * End Somur Controllers for twilio
+**************************************/

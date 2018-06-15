@@ -7,9 +7,10 @@
     "require": {
         "php": ">=7.0.0",
         "barryvdh/laravel-dompdf": "^0.8.2",
-        "fideloper/proxy": "~3.3",
+        "fideloper/proxy": "^4.0",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "twilio/sdk": "^5.19"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
@@ -55,4 +56,6 @@
         "sort-packages": true,
         "optimize-autoloader": true
     }
+   
+    
 }
