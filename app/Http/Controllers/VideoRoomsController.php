@@ -66,7 +66,7 @@ class VideoRoomsController extends Controller
      
        return redirect()->action('VideoRoomsController@joinRoom', [
            'roomName' => $request->roomName
-       ]);
+       ]); 
     }
 
     public function joinRoom($roomName)
