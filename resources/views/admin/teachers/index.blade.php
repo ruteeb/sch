@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    Admins
+    Teachers
 @stop
 
 @section('content')
@@ -13,13 +13,13 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <a href="{{ url('admin/admins') }}">Admins</a>
+                    <a href="{{ url('admin/teachers') }}">Teachers</a>
                 </li>
             </ul>
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
-        <h3 class="page-title"> Admins </h3>
+        <h3 class="page-title"> Teachers </h3>
         <!-- END PAGE TITLE-->
 
         <div class="row">
@@ -63,7 +63,7 @@
                     <div class="portlet-title">
                         <div class="caption font-dark">
                             <i class="icon-settings font-dark"></i>
-                            <span class="caption-subject bold uppercase"> Admins </span>
+                            <span class="caption-subject bold uppercase"> Teachers </span>
                         </div>
                     </div><!-- /.portlet-title -->
 
@@ -72,7 +72,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <a href="{{ url('admin/admins/create') }}" id="sample_editable_1_new" class="btn sbold green"> Add New
+                                        <a href="{{ url('admin/teachers/create') }}" id="sample_editable_1_new" class="btn sbold green"> Add New
                                             <i class="fa fa-plus"></i>
                                         </a>
                                     </div><!-- /.btn-group -->
@@ -86,44 +86,44 @@
                             </div><!-- /.row -->
                         </div><!-- /.table-toolbar -->
 
-                        <form action="{{ url('admin/admins/multidelete') }}" method="post">
+                        <form action="{{ url('admin/teachers/multidelete') }}" method="post">
                             {{ csrf_field() }}
 
                             <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
-                            <thead>
-                            <tr>
-                                <th> Username </th>
-                                <th> E-mail </th>
-                                <th> Phone </th>
-                                <th> Created at </th>
-                                <th> Control </th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-                                @foreach($admins as $admin)
+                                <thead>
                                 <tr>
-                                    <td>{{ $admin->username }}</td>
-                                    <td>{{ $admin->email }}</td>
-                                    <td>{{ $admin->phone }}</td>
-                                    <td>{{ $admin->created_at->format('d M Y') }}</td>
-                                    @if(auth()->guard('admin')->user()->level == 2)
+                                    <th> First Name </th>
+                                    <th> Last Name </th>
+                                    <th> E-mail </th>
+                                    <th> Image </th>
+                                    <th> Created at </th>
+                                    <th> Control </th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                @foreach($teachers as $teacher)
+                                    <tr>
+                                        <td>{{ $teacher->first_name }}</td>
+                                        <td>{{ $teacher->last_name }}</td>
+                                        <td>{{ $teacher->email }}</td>
+                                        <td><img class="view_index" src="{{ asset('admin/files/images/teachers') }}/{{ $teacher->image }}"> </td>
+                                        <td>{{ $teacher->created_at->format('d M Y') }}</td>
                                         <td>
-                                            <a href="{{ url('admin/admins/'.$admin->id.'/edit') }}" class="btn btn-info"><i class="fa fa-refresh"></i> Edit</a>
-                                            @if($admin->active == 1)
-                                                <a href="{{ url('admin/admins/'.$admin->id.'/inactive') }}" class="confirm_inactive btn btn-danger"><i class="fa fa-close"></i> Inactivation</a>
+                                            <a href="{{ url('admin/teachers/'.$teacher->id.'/edit') }}" class="btn btn-info"><i class="fa fa-refresh"></i> Edit</a>
+                                            <a href="{{ url('admin/teachers/'.$teacher->id.'/view') }}" class="btn btn-warning"><i class="fa fa-eye"></i> View</a>
+                                            @if($teacher->active == 1)
+                                                <a href="{{ url('admin/teachers/'.$teacher->id.'/inactive') }}" class="confirm_inactive btn btn-danger"><i class="fa fa-close"></i> Inactivation</a>
                                             @else
-                                                <a href="{{ url('admin/admins/'.$admin->id.'/active') }}" class="confirm_active btn btn-success"><i class="fa fa-check"></i> Activation</a>
+                                                <a href="{{ url('admin/teachers/'.$teacher->id.'/active') }}" class="confirm_active btn btn-success"><i class="fa fa-check"></i> Activation</a>
                                             @endif
                                         </td>
-                                    @else
-                                       <td> Not Permission</td>
-                                    @endif
-                                </tr>
+                                    </tr>
                                 @endforeach
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
 
+                            {{--<button type="submit" class="confirm delete-selected btn btn-danger"><i class="fa fa-trash"></i> Delete Selected</button>--}}
                         </form>
 
 

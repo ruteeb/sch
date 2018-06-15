@@ -39,8 +39,12 @@ var FormWizard = function () {
                         minlength: 5,
                         required: true
                     },
-                    password: {
-                        minlength: 5,
+                    first_name: {
+                        minlength: 3,
+                        required: true
+                    },
+                    last_name: {
+                        minlength: 3,
                         required: true
                     },
                     rpassword: {
@@ -50,6 +54,30 @@ var FormWizard = function () {
                     },
                     //profile
                     fullname: {
+                        required: true
+                    },
+                    birthday: {
+                        required: true
+                    },
+                    bsn_number: {
+                        required: true
+                    },
+                    post_code: {
+                        required: true
+                    },
+                    home_number: {
+                        required: true
+                    },
+                    extension: {
+                        required: true
+                    },
+                    street_name: {
+                        required: true
+                    },
+                    city: {
+                        required: true
+                    },
+                    province: {
                         required: true
                     },
                     email: {
@@ -69,6 +97,18 @@ var FormWizard = function () {
                         required: true
                     },
                     country: {
+                        required: true
+                    },
+                    start_borrow: {
+                        required: true
+                    },
+                    end_borrow: {
+                        required: true
+                    },
+                    start_residence: {
+                        required: true
+                    },
+                    end_residence: {
                         required: true
                     },
                     //payment
@@ -144,6 +184,7 @@ var FormWizard = function () {
                     success.show();
                     error.hide();
                     //add here some ajax code to submit your form or just call form.submit() if you want to submit the form without ajax
+                    form.submit();
                 }
 
             });
@@ -242,7 +283,7 @@ var FormWizard = function () {
 
             $('#form_wizard_1').find('.button-previous').hide();
             $('#form_wizard_1 .button-submit').click(function () {
-                alert('Finished! Hope you like it :)');
+                return true;
             }).hide();
 
             //apply validation on select2 dropdown value change, this only needed for chosen dropdown integration.

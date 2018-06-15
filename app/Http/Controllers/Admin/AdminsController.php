@@ -65,6 +65,7 @@ class AdminsController extends Controller
         $admin->password = bcrypt($request->input('password'));
         $admin->phone = $request->input('phone');
         $admin->level = 1;
+        $admin->active = 1;
         $admin->save();
 
         Session::flash('success', 'Admin Added Successfully');
@@ -125,7 +126,6 @@ class AdminsController extends Controller
         $admin->username = $request->input('username');
         $admin->email = $request->input('email');
         $admin->phone = $request->input('phone');
-        $admin->level = 1;
 
         // Get Old Password Admin
         $oldPassword = $admin->password;
@@ -137,6 +137,60 @@ class AdminsController extends Controller
         $admin->save();
 
         Session::flash('success', 'Admin Updated Successfully');
+        return redirect('admin/admins');
+    }
+
+
+    /**
+     * Active Admin
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function active($id)
+    {
+        // if level auth equal 1 => redirect home page
+        if (Auth::guard('admin')->user()->level == 1) {
+            Session::flash('warning', 'You do not have permission to access this page :(');
+            return redirect('admin/home');
+        }
+
+        // get data admin by id
+        $admin = Admin::find($id);
+        // if admin return false => redirect abort 503
+        if(!$admin)
+            abort(503);
+
+        $admin->active = 1;
+        $admin->save();
+
+        Session::flash('success', 'Admin Activate Successfully');
+        return redirect('admin/admins');
+    }
+
+
+    /**
+     * Inactive admin
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function inactive($id)
+    {
+        // if level auth equal 1 => redirect home page
+        if (Auth::guard('admin')->user()->level == 1) {
+            Session::flash('warning', 'You do not have permission to access this page :(');
+            return redirect('admin/home');
+        }
+
+        // get data admin by id
+        $admin = Admin::find($id);
+        // if admin return false => redirect abort 503
+        if(!$admin)
+            abort(503);
+
+        $admin->active = 0;
+        $admin->save();
+
+        Session::flash('success', 'Admin Inactivate Successfully');
         return redirect('admin/admins');
     }
 

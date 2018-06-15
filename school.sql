@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 11, 2018 at 06:10 PM
+-- Generation Time: Jun 15, 2018 at 06:07 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -35,6 +35,7 @@ CREATE TABLE `admins` (
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `level` int(11) NOT NULL DEFAULT '1',
+  `active` tinyint(1) NOT NULL DEFAULT '1',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -44,9 +45,10 @@ CREATE TABLE `admins` (
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id`, `username`, `email`, `password`, `phone`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Test', 'test@test.com', '$2y$10$I7//zyN/lsYoIfhum5lqIO/sybIEt/F/HwmBNyMxLCy8XU.HTk/o.', '555-555-555', 1, 'SALqqeEst6QXDDsxqTuhdvcYHt9vk2sllmEWyAaD7UfjlWRcIhiZsIZaVo9k', '2018-06-10 22:00:00', '2018-06-11 12:37:31'),
-(2, 'superadmin', 'superadmin@gmail.com', '$2y$10$zcVwsS5Ab7rNSGrF3WZ5yutunc7KIUW.B4hYfhJKtPylecUny7wLW', '123123123', 2, NULL, '2018-06-10 23:28:18', '2018-06-10 23:28:18');
+INSERT INTO `admins` (`id`, `username`, `email`, `password`, `phone`, `level`, `active`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Test', 'test@test.com', '$2y$10$I7//zyN/lsYoIfhum5lqIO/sybIEt/F/HwmBNyMxLCy8XU.HTk/o.', '555-555-555', 1, 1, 'JKEdm9PHHtMXEsS1asWRVWPpuhcJFaU5tshcU60fc895p4UiXcaYrlN633Y5', '2018-06-10 22:00:00', '2018-06-15 00:43:42'),
+(2, 'superadmin', 'superadmin@gmail.com', '$2y$10$zcVwsS5Ab7rNSGrF3WZ5yutunc7KIUW.B4hYfhJKtPylecUny7wLW', '123123123', 2, 1, NULL, '2018-06-10 23:28:18', '2018-06-10 23:28:18'),
+(6, 'somur', 'somur@gmail.com', '$2y$10$65joWb81TW307dBkXTiCbOIPsPBiHII94rIDmdiWwFR6GLMsovz7y', '123654789', 1, 0, NULL, '2018-06-13 10:19:33', '2018-06-15 00:42:35');
 
 -- --------------------------------------------------------
 
@@ -330,14 +332,13 @@ INSERT INTO `settings` (`id`, `site_name`, `logo`, `favicon`, `email`, `phone`, 
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `full_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `first_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `phone` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `birthday` date NOT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `birthday` date DEFAULT NULL,
   `bsn_number` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `post_code` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `home_number` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -349,7 +350,7 @@ CREATE TABLE `users` (
   `end_borrow` date DEFAULT NULL,
   `start_residence` date DEFAULT NULL,
   `end_residence` date DEFAULT NULL,
-  `active` tinyint(1) DEFAULT '0',
+  `active` tinyint(1) DEFAULT '1',
   `status` tinyint(1) DEFAULT '0',
   `level` enum('student','teacher') COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -361,8 +362,13 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `full_name`, `email`, `password`, `image`, `phone`, `birthday`, `address`, `bsn_number`, `post_code`, `home_number`, `extension`, `street_name`, `city`, `province`, `start_borrow`, `end_borrow`, `start_residence`, `end_residence`, `active`, `status`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Hozaifa', 'Hozaifa Ramadan', 'hozaifa@gmail.com', '$2y$10$Q0QyQ2aLXPJqnp2712p5TOlaxF5PkP94vjz./SGVP33K3WAfwGDha', 'hh.png', '123456', '2018-06-11', 'Egypt', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 'student', 'aZaG8UfTNrzDGDkhctMaP2vRbrjuphAxSkzYtjGWVyXbtH518EJi2y7TpYRw', '2018-06-10 22:00:00', '2018-06-10 22:00:00');
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `image`, `phone`, `birthday`, `bsn_number`, `post_code`, `home_number`, `extension`, `street_name`, `city`, `province`, `start_borrow`, `end_borrow`, `start_residence`, `end_residence`, `active`, `status`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Hozaifa', 'Ramadan', 'hozaifa@gmail.com', '$2y$10$IJr.BfO824rK3C.vXOrWjOlMspm1ntDgNsl21AZyEarwlF.bS2JSm', 'dec844d6ad634eba71c2f44567c136f5da714971user5-128x128.jpg', '123456', '2018-06-11', '123456', '123456', '5', 'test test', 'Test test', 'Test test', 'test test', '2018-06-01', '2018-06-30', '2018-06-01', '2018-06-30', 0, 0, 'student', 'aZaG8UfTNrzDGDkhctMaP2vRbrjuphAxSkzYtjGWVyXbtH518EJi2y7TpYRw', '2018-06-10 22:00:00', '2018-06-15 02:04:46'),
+(4, 'Ahmed', 'Hassan', 'ahmed@gmail.com', '$2y$10$Ayuinl47IJQtRO6wejZVIuf.7r//FAQ8a.7hAj4vpGdhoiBDd6W9W', 'ba20db7e192456760b227ff4c730687eafb115bbavatar04.png', '32174569874', '2018-06-07', '5454554', '4545554', '5', 'test', 'test test test test ', 'test', 'test', NULL, NULL, NULL, NULL, 0, 0, 'teacher', NULL, '2018-06-14 00:15:13', '2018-06-15 00:50:35'),
+(5, 'Jak', 'Mak', 'jak@jak.com', '$2y$10$M1qF5bIJO2JzzANTNbTM..JFL8CKbSMqlOoovu4au.SxDPCyc/ybq', 'be9efd9453918e3635578d040894cb30e965a9cdavatar.png', '321456987', '1992-04-10', '123456', '123456', '8', '114', 'Test test', 'Test test', 'test', NULL, NULL, NULL, NULL, 0, 0, 'teacher', NULL, '2018-06-14 13:42:58', '2018-06-15 00:40:10'),
+(6, 'Hanan', 'Ahmed', 'hanan@gmail.com', '$2y$10$dHlcHhE6UiXnfGqmUfcba.Cr0YKpuAbKUaax2tkzhIq7rhXokbLh2', 'd4c8faa8bb4e4ec473abf41ed31da69c86d6701aavatar2.png', '123654789', '1986-03-01', '123456', '123654', '8', 'test', 'Test test', 'Test test', 'test', NULL, NULL, NULL, NULL, 1, 0, 'teacher', NULL, '2018-06-15 00:02:03', '2018-06-15 00:39:10'),
+(7, 'Sara', 'Mohamed', 'sara@gmail.com', '$2y$10$XBNp5MP6k5fHEXT8EgadsezliTwuPmzZnJfaDFily01uKUTWcXVmW', '2eabe5bede028d54b3fefa50dadba8862f0f808aavatar3.png', '1234556789', '1990-04-01', '123456', '788455', '8', '75485', 'Test test test', 'Test test', 'test test', NULL, NULL, NULL, NULL, 1, 0, 'teacher', NULL, '2018-06-15 00:05:11', '2018-06-15 00:38:14'),
+(8, 'Said', 'Ahmed', 'said@gmail.com', '$2y$10$d6GIZqtsrAL0rjRwDNnBJ.1BepDWEtsoWGShRwQ5fShKma0GsGUgi', 'adc06b947c2fc5e119d3115e7d9e739ea59bfc1cuser6-128x128.jpg', '123654789', '1995-01-02', '123456', '11729', '123654', '114', 'Test test test', 'Test test', 'test test', '2018-01-01', '2018-12-01', '2018-02-01', '2018-12-01', 1, 0, 'student', NULL, '2018-06-15 01:07:47', '2018-06-15 02:04:50');
 
 --
 -- Indexes for dumped tables
@@ -507,7 +513,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `classes`
@@ -603,7 +609,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

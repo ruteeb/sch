@@ -104,7 +104,8 @@ a {
 }
 
 .form-body textarea.form-control {
-    height: 150px;
+    height: 100px;
+    resize: vertical;
 }
 
 .form-body .form-control:focus {
@@ -227,4 +228,60 @@ Page View Details
 .page-header.navbar .page-logo .logo-default {
     margin: 4px 0 0;
     width: 120px;
+}
+
+
+
+/************************
+Side bar links
+************************/
+
+.icon_sidebar {
+    width: 20px;
+}
+
+/************************
+End Side bar links
+************************/
+
+
+
+.view_index {
+    width: 150px;
+    height:100px;
+}
+
+.full_width {
+    width: 100%;
+}
+
+.font-orange {
+    color: #f49220 !important;
+}
+
+.profile-info h1 {
+    margin-bottom: 20px;
+}
+
+.portlet>.portlet-body p {
+    font-size: 18px;
+    color: #444;
+    padding: 15px 0;
+    border-bottom: 1px dashed #dee3e8;
+    margin: 0;
+}
+
+.portlet>.portlet-body p:last-child {
+    border-bottom: 0;
+}
+
+.profile-info i {
+    color: #f49220;
+    font-size: 23px;
+    margin-right: 5px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px !important;
+    text-align: center;
+    border: 1px solid #f49220;
 }
