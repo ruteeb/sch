@@ -92,6 +92,19 @@ Route::group(['namespace' => 'Admin'], function () {
 
 
 
+
+        // Route Course
+        Route::get('admin/courses', 'CoursesController@index');
+        Route::get('admin/courses/create', 'CoursesController@create');
+        Route::post('admin/courses/store', 'CoursesController@store');
+        Route::get('admin/courses/{id}/view', 'CoursesController@view');
+        Route::get('admin/courses/{id}/edit', 'CoursesController@edit');
+        Route::post('admin/courses/{id}/update', 'CoursesController@update');
+        Route::get('admin/courses/{id}/active', 'CoursesController@active');
+        Route::get('admin/courses/{id}/inactive', 'CoursesController@inactive');
+
+
+
     });
 
 

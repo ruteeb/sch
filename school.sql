@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2018 at 06:07 AM
+-- Generation Time: Jun 15, 2018 at 08:24 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -123,9 +123,18 @@ CREATE TABLE `courses` (
   `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`id`, `title`, `description`, `image`, `active`, `created_at`, `updated_at`) VALUES
+(1, 'Second course', 'Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test \r\nTest Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test \r\nTest Test Test Test Test Test Test Test Test Test Test Test Test Test', '1d606e75b6bb3e4882503d8f336f8aedacd179ec1 Music.jpg', 1, '2018-06-15 04:03:23', '2018-06-15 04:16:12'),
+(2, 'First course', 'Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test \r\nTest Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test \r\nTest Test Test Test Test Test Test Test Test Test Test Test Test Test', '5701dffc5993e5aeb1d7a4fe7b49b5734ab880551Cars.jpg', 2, '2018-06-15 04:03:43', '2018-06-15 04:24:15');
 
 -- --------------------------------------------------------
 
@@ -543,7 +552,7 @@ ALTER TABLE `contracts`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `courses_classes`

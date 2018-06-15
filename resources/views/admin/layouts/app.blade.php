@@ -132,6 +132,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item ">
+                    <a href="{{ url('admin/courses') }}" class="nav-link nav-toggle">
+                        <img class="icon_sidebar" src="{{ asset('admin/assets/img/icon/course.png') }}">
+                        <span class="title">Courses</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- END SIDEBAR -->
