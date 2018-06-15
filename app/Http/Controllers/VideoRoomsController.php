@@ -70,7 +70,7 @@ class VideoRoomsController extends Controller
     } 
 
     public function joinRoom($roomName)   
-    { 
+    {  
         // A unique identifier for this user
         $identity = Auth::user()->first_name; 
         
