@@ -99,15 +99,43 @@
                 </li>
                 <li class="nav-item start ">
                     <a href="{{ url('admin/home') }}" class="nav-link nav-toggle">
-                        <i class="icon-home"></i>
+                        <img class="icon_sidebar" src="{{ asset('admin/assets/img/icon/home.png') }}">
                         <span class="title">Home Page</span>
                     </a>
                 </li>
 
                 <li class="nav-item ">
                     <a href="{{ url('admin/setting') }}" class="nav-link nav-toggle">
-                        <i class="fa fa-gear"></i>
+                        <img class="icon_sidebar" src="{{ asset('admin/assets/img/icon/setting.png') }}">
                         <span class="title">Setting</span>
+                    </a>
+                </li>
+
+                <li class="nav-item ">
+                    <a href="{{ url('admin/admins') }}" class="nav-link nav-toggle">
+                        <img class="icon_sidebar" src="{{ asset('admin/assets/img/icon/admins.png') }}">
+                        <span class="title">Admins</span>
+                    </a>
+                </li>
+
+                <li class="nav-item ">
+                    <a href="{{ url('admin/teachers') }}" class="nav-link nav-toggle">
+                        <img class="icon_sidebar" src="{{ asset('admin/assets/img/icon/teacher.png') }}">
+                        <span class="title">Teachers</span>
+                    </a>
+                </li>
+
+                <li class="nav-item ">
+                    <a href="{{ url('admin/students') }}" class="nav-link nav-toggle">
+                        <img class="icon_sidebar" src="{{ asset('admin/assets/img/icon/student.png') }}">
+                        <span class="title">Students</span>
+                    </a>
+                </li>
+
+                <li class="nav-item ">
+                    <a href="{{ url('admin/courses') }}" class="nav-link nav-toggle">
+                        <img class="icon_sidebar" src="{{ asset('admin/assets/img/icon/course.png') }}">
+                        <span class="title">Courses</span>
                     </a>
                 </li>
 
@@ -144,6 +172,12 @@
 <script src="{{ asset('admin') }}/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->
 <!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="{{ asset('admin') }}/assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+<script src="{{ asset('admin') }}/assets/global/plugins/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="{{ asset('admin') }}/assets/global/plugins/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
+<script src="{{ asset('admin') }}/assets/global/plugins/bootstrap-wizard/jquery.bootstrap.wizard.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="{{ asset('admin') }}/assets/global/scripts/datatable.js" type="text/javascript"></script>
 <script src="{{ asset('admin') }}/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
 <script src="{{ asset('admin') }}/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
@@ -152,6 +186,8 @@
 <script src="{{ asset('admin') }}/assets/global/scripts/app.min.js" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="{{ asset('admin') }}/assets/pages/scripts/form-wizard.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS --><!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="{{ asset('admin') }}/assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <!-- BEGIN THEME LAYOUT SCRIPTS -->

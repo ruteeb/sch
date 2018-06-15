@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    Add Data About
+    Edit Admin
 @stop
 
 @section('content')
@@ -14,18 +14,18 @@
                 </li>
 
                 <li>
-                    <a href="{{ url('admin/about') }}">About</a>
+                    <a href="{{ url('admin/admins') }}">Admins</a>
                     <i class="fa fa-circle"></i>
                 </li>
 
                 <li>
-                    <a href="{{ url('admin/about/create') }}">Add Data About</a>
+                    <span>Edit Admin</span>
                 </li>
             </ul>
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
-        <h3 class="page-title"> Add Data About </h3>
+        <h3 class="page-title"> Edit Admin </h3>
         <!-- END PAGE TITLE-->
 
         <div class="row">
@@ -38,6 +38,15 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             {{Session::get('success')}}
+                        </div>
+                    @endif
+
+                    @if(Session::has('warning'))
+                        <div class="alert alert-warning">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{Session::get('warning')}}
                         </div>
                     @endif
 
@@ -60,79 +69,71 @@
                     <div class="portlet-title">
                         <div class="caption font-red-sunglo">
                             <i class="icon-settings font-red-sunglo"></i>
-                            <span class="caption-subject bold uppercase"> Add Data About</span>
+                            <span class="caption-subject bold uppercase"> Edit Admin</span>
                         </div>
                     </div><!-- /.portlet-title -->
 
                     <div class="portlet-body form">
-                        <form role="form" method="post" action="{{ url('admin/about/store') }}" enctype="multipart/form-data">
+                        <form role="form" method="post" action="{{ url('admin/admins/'.$admin->id.'/update') }}" enctype="multipart/form-data">
 
                             {{ csrf_field() }}
                             <div class="form-body">
                                 <div class="row">
 
 
-                                    <div class="col-md-12">
-                                        <div class="form-group{{ $errors->has('language') ? ' has-error' : '' }}">
-                                            <label for="language">Choose Language</label>
-                                            <select class="form-control" id="language" name="language">
-                                                <option value="">Choose Language</option>
-
-                                                @foreach($languages as $language)
-                                                    <option {{ old('language') == $language->language ? 'selected' : '' }} value="{{ $language->id }}">
-                                                        {{ $language->language }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                            @if ($errors->has('language'))
-                                                <span class="help-block">
-                                                    <strong>{{ $errors->first('language') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div><!-- /.col-md-12 -->
-
-
                                     <div class="col-md-6">
-                                        <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                                            <label for="title">Title</label>
-                                            <input type="text" class="form-control" value="{{ old('title') }}" name="title" id="title" placeholder="Title">
-                                            @if ($errors->has('title'))
+                                        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control" value="{{ $admin->username }}" name="username" id="username" placeholder="Username">
+                                            @if ($errors->has('username'))
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('title') }}</strong>
+                                                    <strong>{{ $errors->first('username') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                     </div><!-- /.col-md-6 -->
 
                                     <div class="col-md-6">
-                                        <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
-                                            <label for="image">Image</label>
-                                            <input type="file" class="form-control" name="image" id="image" placeholder="Choose Image">
-                                            @if ($errors->has('image'))
+                                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                            <label for="email">E-mail</label>
+                                            <input type="email" class="form-control" value="{{ $admin->email }}" name="email" id="email" placeholder="E-mail">
+                                            @if ($errors->has('email'))
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('image') }}</strong>
+                                                    <strong>{{ $errors->first('email') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                     </div><!-- /.col-md-6 -->
 
-                                    <div class="col-md-12">
-                                        <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
-                                            <label for="content">Content</label>
-                                            <textarea class="form-control" id="content" name="content" placeholder="Content">{{ old('content') }}</textarea>
-                                            @if ($errors->has('content'))
+                                    <div class="col-md-6">
+                                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                                            @if ($errors->has('password'))
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('content') }}</strong>
+                                                    <strong>{{ $errors->first('password') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                     </div><!-- /.col-md-6 -->
+
+                                    <div class="col-md-6">
+                                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                                            <label for="phone">Phone</label>
+                                            <input type="text" class="form-control" value="{{ $admin->phone }}" name="phone" id="phone" placeholder="Phone">
+                                            @if ($errors->has('phone'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('phone') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div><!-- /.col-md-6 -->
+
                                 </div><!-- /.row -->
                             </div>
                             <div class="form-actions">
                                 <button type="submit" class="btn blue">Submit</button>
-                                <a href="{{ url('admin/about') }}" class="btn default">Cancel</a>
+                                <a href="{{ url('admin/admins') }}" class="btn default">Cancel</a>
                             </div>
                         </form>
                     </div>

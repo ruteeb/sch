@@ -72,7 +72,7 @@ class VideoRoomsController extends Controller
     public function joinRoom($roomName)
     {
         // A unique identifier for this user
-        $identity = Auth::user()->username;
+        $identity = Auth::user()->first_name;
         
         \Log::debug("joined with identity: $identity");
         $token = new AccessToken($this->sid, $this->key, $this->secret, 3600, $identity);

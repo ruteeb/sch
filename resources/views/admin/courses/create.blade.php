@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    Edit Data About
+    Add Course
 @stop
 
 @section('content')
@@ -14,18 +14,18 @@
                 </li>
 
                 <li>
-                    <a href="{{ url('admin/about') }}">About</a>
+                    <a href="{{ url('admin/courses') }}">Courses</a>
                     <i class="fa fa-circle"></i>
                 </li>
 
                 <li>
-                    <span>Edit Data About</span>>
+                    <a href="{{ url('admin/courses/create') }}">Add Course</a>
                 </li>
             </ul>
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
-        <h3 class="page-title"> Edit Data About </h3>
+        <h3 class="page-title"> Add Course </h3>
         <!-- END PAGE TITLE-->
 
         <div class="row">
@@ -40,6 +40,15 @@
                             {{Session::get('success')}}
                         </div>
                     @endif
+
+                        @if(Session::has('warning'))
+                            <div class="alert alert-warning">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                {{Session::get('warning')}}
+                            </div>
+                        @endif
 
                     @if(count($errors) > 0)
                         <div class="alert alert-danger">
@@ -60,59 +69,60 @@
                     <div class="portlet-title">
                         <div class="caption font-red-sunglo">
                             <i class="icon-settings font-red-sunglo"></i>
-                            <span class="caption-subject bold uppercase"> Edit Data About</span>
+                            <span class="caption-subject bold uppercase"> Add Course</span>
                         </div>
                     </div><!-- /.portlet-title -->
 
                     <div class="portlet-body form">
-                        <form role="form" method="post" action="{{ url('admin/about/'.$about->id.'/update') }}" enctype="multipart/form-data">
+                        <form role="form" method="post" action="{{ url('admin/courses/store') }}" enctype="multipart/form-data">
 
                             {{ csrf_field() }}
                             <div class="form-body">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                                            <label for="title">Title</label>
-                                            <input type="text" class="form-control" value="{{ $about->title }}" name="title" id="title" placeholder="Title">
-                                            @if ($errors->has('title'))
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group{{ $errors->has('course') ? ' has-error' : '' }}">
+                                            <label for="course">Course</label>
+                                            <input type="text" class="form-control" value="{{ old('course') }}" name="course" id="course" placeholder="Course">
+                                            @if ($errors->has('course'))
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('title') }}</strong>
+                                                    <strong>{{ $errors->first('course') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
-                                    </div><!-- /.col-md-12 -->
+                                    </div><!-- /.col-md-6 -->
 
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group{{ $errors->has('image') ? ' has-error' : '' }}">
                                             <label for="image">Image</label>
-                                            <div>
-                                                <img style="width: 150px; margin-bottom: 10px;" src="{{ asset('admin') }}/images/about/{{$about->image}}">
-                                            </div>
-                                            <input type="file" class="form-control" name="image" id="image" placeholder="Choose Image">
+                                            <input type="file" class="form-control" value="{{ old('image') }}" name="image" id="image" placeholder="Image">
                                             @if ($errors->has('image'))
                                                 <span class="help-block">
                                                     <strong>{{ $errors->first('image') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
-                                    </div><!-- /.col-md-12 -->
+                                    </div><!-- /.col-md-6 -->
 
                                     <div class="col-md-12">
-                                        <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
-                                            <label for="content">Content</label>
-                                            <textarea class="form-control" id="content" name="content" placeholder="Content">{{ $about->content }}</textarea>
-                                            @if ($errors->has('content'))
+                                        <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+                                            <label for="description">Description</label>
+                                            <textarea class="form-control" name="description" id="description" placeholder="Description">{{ old('description') }}</textarea>
+                                            @if ($errors->has('description'))
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('content') }}</strong>
+                                                    <strong>{{ $errors->first('description') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
-                                    </div><!-- /.col-md-6 -->
+                                    </div><!-- /.col-md-12 -->
+
+
                                 </div><!-- /.row -->
                             </div>
                             <div class="form-actions">
                                 <button type="submit" class="btn blue">Submit</button>
-                                <a href="{{ url('admin/about') }}" class="btn default">Cancel</a>
+                                <a href="{{ url('admin/courses') }}" class="btn default">Cancel</a>
                             </div>
                         </form>
                     </div>

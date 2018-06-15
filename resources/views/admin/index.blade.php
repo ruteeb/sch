@@ -3,7 +3,6 @@
 @section('title')
     Oranje Ster
 @stop
-
 @section('content')
     <div class="page-content">
         <div class="page-bar">
@@ -35,7 +34,7 @@
                                 <div class="number">
                                     <span class="count-num" data-counter="counterup" data-value="3">3</span>
                                 </div>
-                                <div class="desc"> <strong>How To Use Repatha </strong> </div>
+                                <div class="desc"> <strong>How To Use Repatha</strong> </div>
                             </div>
                         </a>
                         <a class="items-add" href="http://localhost/repatha/admin/howtouserepatha/create">

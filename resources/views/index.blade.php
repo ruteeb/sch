@@ -124,17 +124,17 @@
 // see https://getcomposer.org/doc/01-basic-usage.md
 // require_once  'C:\Windows\SysWOW64\vendor\autoload.php';
 
-use Twilio\Rest\Client;
+// use Twilio\Rest\Client;
 
-// Your Account Sid and Auth Token from twilio.com/console
-$sid    = "AC56259e6617a799bd5816e3ea6216b43c";
-$token  = "964ddd1456f87228e1623e681c410bb0";
-$twilio = new Client($sid, $token);
+// // Your Account Sid and Auth Token from twilio.com/console
+// $sid    = "AC56259e6617a799bd5816e3ea6216b43c";
+// $token  = "964ddd1456f87228e1623e681c410bb0";
+// $twilio = new Client($sid, $token);
 
-$recording = $twilio->video->v1->recordings("RT45627adb3af61738a13d6597c95541fa")
-                               ->fetch();
+// $recording = $twilio->video->v1->recordings("RT45627adb3af61738a13d6597c95541fa")
+//                                ->fetch();
 
-print($recording->trackName);?>
+// print($recording->trackName);?>
         </div>
     </body>
 </html>

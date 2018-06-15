@@ -18,6 +18,7 @@ class CreateCoursesTable extends Migration
             $table->string('title');
             $table->longText('description');
             $table->string('image');
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }

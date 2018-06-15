@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-    About
+    Courses
 @stop
 
 @section('content')
@@ -13,13 +13,13 @@
                     <i class="fa fa-circle"></i>
                 </li>
                 <li>
-                    <a href="{{ url('admin/about') }}">About</a>
+                    <a href="{{ url('admin/courses') }}">Courses</a>
                 </li>
             </ul>
         </div>
         <!-- END PAGE BAR -->
         <!-- BEGIN PAGE TITLE-->
-        <h3 class="page-title"> About </h3>
+        <h3 class="page-title"> Courses </h3>
         <!-- END PAGE TITLE-->
 
         <div class="row">
@@ -63,7 +63,7 @@
                     <div class="portlet-title">
                         <div class="caption font-dark">
                             <i class="icon-settings font-dark"></i>
-                            <span class="caption-subject bold uppercase"> About Data</span>
+                            <span class="caption-subject bold uppercase"> Courses </span>
                         </div>
                     </div><!-- /.portlet-title -->
 
@@ -72,7 +72,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="btn-group">
-                                        <a href="{{ url('admin/about/create') }}" id="sample_editable_1_new" class="btn sbold green"> Add New
+                                        <a href="{{ url('admin/courses/create') }}" id="sample_editable_1_new" class="btn sbold green"> Add New
                                             <i class="fa fa-plus"></i>
                                         </a>
                                     </div><!-- /.btn-group -->
@@ -86,54 +86,41 @@
                             </div><!-- /.row -->
                         </div><!-- /.table-toolbar -->
 
-                        <form action="{{ url('admin/about/multidelete') }}" method="post">
+                        <form action="{{ url('admin/admins/multidelete') }}" method="post">
                             {{ csrf_field() }}
 
-                            <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+                            <table class="table table-striped table-bordered table-hover order-column" id="sample_1">
                             <thead>
                             <tr>
-                                <th>
-                                    <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                        <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
-                                        <span></span>
-                                    </label>
-                                </th>
-                                <th style="width: 200px;"> Title </th>
-                                <th style="width: 250px;"> Content </th>
+                                <th> Course </th>
+                                <th style="width: 300px;"> Description </th>
                                 <th> Image </th>
-                                <th> Lang </th>
                                 <th> Created at </th>
                                 <th> Control </th>
                             </tr>
                             </thead>
 
                             <tbody>
-                                @foreach($about as $oneAbout)
+                                @foreach($courses as $course)
                                 <tr>
+                                    <td>{{ $course->title }}</td>
+                                    <td>{{ str_limit($course->description, 100) }}</td>
+                                    <td><img class="view_index" src="{{ asset('admin/files/images/courses/') }}/{{ $course->image }}"></td>
+                                    <td>{{ $course->created_at->format('d M Y') }}</td>
                                     <td>
-                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                            <input type="checkbox" name="multidelet[]" class="checkboxes" value="{{ $oneAbout->id }}" />
-                                            <span></span>
-                                        </label>
-                                    </td>
-                                    <td>{{ $oneAbout->title }}</td>
-                                    <td>{{ str_limit($oneAbout->content, 150) }}</td>
-                                    <td>
-                                        <img style="width: 120px;" src="{{ asset('admin') }}/images/about/{{$oneAbout->image}}">
-                                    </td>
-                                    <td>{{ $oneAbout->language }}</td>
-                                    <td>{{ $oneAbout->created_at->format('d M Y') }}</td>
-                                    <td>
-                                        <a href="{{ url('admin/about/'.$oneAbout->id.'/edit') }}" class="btn btn-info"><i class="fa fa-refresh"></i> Edit</a>
-                                        <a href="{{ url('admin/about/'.$oneAbout->id.'/view') }}" class="btn btn-warning"><i class="fa fa-eye"></i> View</a>
-                                        <a href="{{ url('admin/about/'.$oneAbout->id.'/delete') }}" class="confirm btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
+                                        <a href="{{ url('admin/courses/'.$course->id.'/edit') }}" class="btn btn-info"><i class="fa fa-refresh"></i> Edit</a>
+                                        <a href="{{ url('admin/courses/'.$course->id.'/view') }}" class="btn btn-warning"><i class="fa fa-eye"></i> View</a>
+                                        @if($course->active == 1)
+                                            <a href="{{ url('admin/courses/'.$course->id.'/inactive') }}" class="confirm_inactive btn btn-danger"><i class="fa fa-close"></i> Inactivation</a>
+                                        @else
+                                            <a href="{{ url('admin/courses/'.$course->id.'/active') }}" class="confirm_active btn btn-success"><i class="fa fa-check"></i> Activation</a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
 
-                            <button type="submit" class="confirm delete-selected btn btn-danger"><i class="fa fa-trash"></i> Delete Selected</button>
                         </form>
 
 
