@@ -17,7 +17,7 @@
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
-                height: 100vh;
+                height: 100vh; 
                 margin: 0;
             } 
 
@@ -66,21 +66,10 @@
          
 
 
-
-
-
-
-
- 
-
-
-
-
-
-
-
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     </head>
     <body>
+    <h2>{{auth::user()['id']}}</h2>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -97,78 +86,99 @@
  
             <div class="content">
                 <div class="title m-b-md">
-                    Video Chat Rooms
+                    Join to room
                 </div>
 
                 <form action="room/create" method="POST">
-                    {{ csrf_field() }}
+                  
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <label>Room Name</label>
                
-                <div>
-                    <select  name="courcesID" id="courcesID" required>
-                        <option value=""></option>
-                        <option value="1">ONA</option>
-                        <option value="2">A2 leesen</option>
-                    </select>
-                    <select  name="class_id" id="class_id" required>
-                            <option value=""></option>
-                            <option value="1">may</option>
-                            <option value="2">augustus</option>
-                        </select>
+                <div id="resultRooms">
+
                 </div>
-                <br>
-                <input type="text" name="roomName" id="roomName" placeholder="Room Name" disabled="true" required>
-                <input type="text" name="roomName_extention" id="roomName_extention" placeholder="Extention" readonly="readonly"  required  >
                  
-                <input type="submit" name="submit" value="Go">
+                 
+                
+                 
+                {{-- <input type="submit" name="submit" value="Go"> --}}
                 </form>
                 
                 
+                <input type="button" name="target" id="target" value="target">
 
-
-                @if($rooms)
-                @foreach ($rooms as $room)
-                    <a href="{{ url('/room/join/'.$room) }}">{{ $room }}</a>
-                @endforeach
-                @endif
+                 
             </div>
 
 
-            <?php
+           
 
-// Update the path below to your autoload.php,
-// see https://getcomposer.org/doc/01-basic-usage.md
-// require_once  'C:\Windows\SysWOW64\vendor\autoload.php';
+                           
 
-// use Twilio\Rest\Client;
-
-// // Your Account Sid and Auth Token from twilio.com/console
-// $sid    = "AC56259e6617a799bd5816e3ea6216b43c";
-// $token  = "964ddd1456f87228e1623e681c410bb0";
-// $twilio = new Client($sid, $token);
-
-// $recording = $twilio->video->v1->recordings("RT45627adb3af61738a13d6597c95541fa")
-//                                ->fetch();
-
-// print($recording->trackName);?>
+ 
 <script
 src="https://code.jquery.com/jquery-3.3.1.min.js"
 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 crossorigin="anonymous"></script>
 <script>
-    $( "#class_id" ).change(function() {
+    // $( "#class_id" ).change(function() {
+
         
-        $( "#roomName" ).prop( "disabled", false );
+        $( "#target" ).click(function() {
+            $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+            });
+            var request = $.ajax({
+                url: '{{url('')}}/GetOnlineRooms' ,
+                type: 'post',
+                // dataType: 'json',
+                data: {
+                    userID: {{auth::user()['id']}} ,
+                    } ,
+                // contentType: 'application/json; charset=utf-8'
+            });
+            request.done(function(data) {
+                var elementTemp = "";
+                // console.log(data[1])
+                // 
+                    for(i=0; i< data.length;i++){
+                        if(data[i]!=null){
+                        console.log(data[i]);
+                        elementTemp = elementTemp + "<a href='{{url('')}}/room/join/"+data[i]  +"'>"+data[i][0] +"</a>"   + "<br>";
+                        }
+                    }
+                   
+                        
+                    
+                
+                // }else{
+                //     alert()
+                // }
+               
+                // console.log(data)
+                $( "#resultRooms" ).html(elementTemp);            
+            });
+            request.fail(function(jqXHR, textStatus) {
+                $( "#resultRooms" ).html("هناك خطأ حاول مرة أخرى!!!")
+            });
+        });
+
+        
+        // $( "#resultRooms" ).prop( "disabled", false );
 
 
-        $('#roomName_extention').attr('readonly', false);
-            courcesID = $( "#courcesID option:selected" ).html()  ;
-            class_id = $( "#class_id option:selected" ).html()  ;
-            var auth_= "{{auth::user()['id']}}";
-        $( "#roomName_extention" ).val(courcesID+"_"+class_id+'_'+ auth_);
-        $('#roomName_extention').attr('readonly', true);
-    });
+        // $('#roomName_extention').attr('readonly', false);
+            // courcesID = $( "#courcesID option:selected" ).html()  ;
+            // class_id = $( "#class_id option:selected" ).html()  ;
+            
+       
+        // $('#roomName_extention').attr('readonly', true);
+    // });
     // /important from somur: we have to set condtions 
+
+
 </script>
         </div>
     </body>

@@ -49,52 +49,75 @@ class VideoRoomsController extends Controller
         return view('index', ['rooms' => $rooms]);
     }
 
+    public function indexjoinRoom() {
+         
+         
+        return view('joinToRoom' );
+    }
+    
+
     public function createRoom(Request $request){
        
        $client = new Client($this->sid, $this->token);
-     
-       $exists = $client->video->rooms->read([ 'uniqueName' => $request->roomName.$request->roomName_extention]);
-        
-         
-       if(auth::user()['level']== "teacher" || Auth::guard('admin')->check() ){
+       $roomRequest = $request->roomName."_".$request->roomName_extention;
+       $exists = $client->video->rooms->read([ 'uniqueName' => $roomRequest]);
+       
+        // echo  "اثقث" . ;
+       if(auth::user()['level']== "teacher"){
       
             if (empty($exists)) {
                 $resultCreation = $client->video->rooms->create([
-                    'uniqueName' => $request->roomName.$request->roomName_extention,
+                    'uniqueName' => $roomRequest,
                     'type' => 'group',
                     'recordParticipantsOnConnect' => true
                 ]);
             
-                \Log::debug("created new room: ".$request->roomName.$request->roomName_extention);
-                 
+                \Log::debug("created new room: ".$roomRequest);
+                // echo "<pre>";
+                //    print_r($resultCreation);
             }else{
                 
                 
             }
+
+
             // echo "<pre>";
             // echo $request->roomName_extention."<br>";
             // echo  $request->roomName.$request->roomName_extention."<br>";
-            // $room = $client->video->rooms($request->roomName.$request->roomName_extention)->fetch();
+            
             // echo $room->sid."<br>";
-     
+            // echo $request->class_id;
+            $room = $client->video->rooms($roomRequest)->fetch();
             $inputs = array ();
             $inputs['sid'] = $room->sid;
-            $inputs['title'] = $request->roomName.$request->roomName_extention;
-            $inputs['teacher_id'] = auth::user()['id'];
-            Lessons::create($inputs);
+            $inputs['title'] = $roomRequest;
+            $inputs['teacher_id'] = auth::user()['id']; 
+            $inputs['class_id'] = $request->class_id; // يجب أن يكرر من صفحة البلييد بنفس طريقة ربط الطالب بالصفوف- وهنا فورايتش
+
+            // foreach($arrayClass_id as $element){
+            //     $inputs['class_id'] = $element;
+                Lessons::create($inputs);
+            // }
+           
+            return redirect()->action('VideoRoomsController@joinRoom', [
+                   'roomName' => $roomRequest
+            ]); 
 
         }else{
-            echo "you don't have permisions to create a lesson";
+            echo "you don't have permisions";
         }
 
        
 
-     
+    //    $lessons = new Lessons;
+    // //    $lessons->name = $request->name;
+    //    $lessons->save();
+    // $videoGrant = new VideoGrant();
+    // print_r($exists);
 
 
-       return redirect()->action('VideoRoomsController@joinRoom', [
-           'roomName' => $request->roomName.$request->roomName_extention
-       ]); 
+
+   
     } 
     
 

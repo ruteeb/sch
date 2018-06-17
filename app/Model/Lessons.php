@@ -8,5 +8,5 @@ class Lessons extends Model
 {
     protected $table = 'lessons';
 
-    protected $fillable = ['title', 'content', 'video', 'teacher_id','sid'];
+    protected $fillable = ['title', 'content', 'video', 'teacher_id','sid','class_id'];
 }

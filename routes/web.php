@@ -125,6 +125,17 @@ Route::prefix('room')->middleware('auth')->group(function() {
 });
 
 
+// Start AjaxControllers ---------
+Route::post('GetOnlineRooms', 'AjaxController@GetOnlineRooms');
+Route::get('GetOnlineRooms', 'AjaxController@GetOnlineRooms');
+
+
+// End AjaxControllers ---------
+
+
+Route::get('/joinRoom', "VideoRoomsController@indexjoinRoom");
+
+
 /**************************************
  * End Somur Controllers for twilio
 **************************************/
