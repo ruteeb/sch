@@ -127,7 +127,7 @@ Route::prefix('room')->middleware('auth')->group(function() {
 
 // Start AjaxControllers ---------
 Route::post('GetOnlineRooms', 'AjaxController@GetOnlineRooms');
-Route::get('GetOnlineRooms', 'AjaxController@GetOnlineRooms');
+// Route::get('GetOnlineRooms', 'AjaxController@GetOnlineRooms');
 
 
 // End AjaxControllers ---------

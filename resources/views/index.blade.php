@@ -97,7 +97,7 @@
  
             <div class="content">
                 <div class="title m-b-md">
-                    Video Chat Rooms
+                    Video Chat Roomsddd
                 </div>
 
                 <form action="room/create" method="POST">
@@ -165,7 +165,7 @@ crossorigin="anonymous"></script>
             courcesID = $( "#courcesID option:selected" ).html()  ;
             class_id = $( "#class_id option:selected" ).html()  ;
             var auth_= "{{auth::user()['id']}}";
-        $( "#roomName_extention" ).val(courcesID+"_"+class_id+'_'+ auth_);
+        $( "#roomName_extention" ).val(courcesID+"_"+class_id+'_'+);
         $('#roomName_extention').attr('readonly', true);
     });
     // /important from somur: we have to set condtions 
