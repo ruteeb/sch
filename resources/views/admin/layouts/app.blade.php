@@ -139,6 +139,35 @@
                     </a>
                 </li>
 
+                <li class="nav-item ">
+                    <a href="{{ url('admin/classes') }}" class="nav-link nav-toggle">
+                        <img class="icon_sidebar" src="{{ asset('admin/assets/img/icon/class.png') }}">
+                        <span class="title">Classes</span>
+                    </a>
+                </li>
+
+                <li class="nav-item ">
+                    <a href="{{ url('admin/lessons') }}" class="nav-link nav-toggle">
+                        <img class="icon_sidebar" src="{{ asset('admin/assets/img/icon/lesson.png') }}">
+                        <span class="title">Lessons Online</span>
+                    </a>
+                </li>
+
+                <li class="nav-item ">
+                    <a href="{{ url('admin/materials') }}" class="nav-link nav-toggle">
+                        <img class="icon_sidebar" src="{{ asset('admin/assets/img/icon/book.png') }}">
+                        <span class="title">Materials</span>
+                    </a>
+                </li>
+
+                <li class="nav-item ">
+                    <a href="{{ url('admin/events') }}" class="nav-link nav-toggle">
+                        <img class="icon_sidebar" src="{{ asset('admin/assets/img/icon/event.png') }}">
+                        <span class="title">Events</span>
+                    </a>
+                </li>
+
+
             </ul>
         </div>
         <!-- END SIDEBAR -->
@@ -185,10 +214,19 @@
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
 <script src="{{ asset('admin') }}/assets/global/scripts/app.min.js" type="text/javascript"></script>
 <!-- END THEME GLOBAL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<link href="{{ asset('admin') }}/assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+<!-- END PAGE LEVEL PLUGINS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="{{ asset('admin') }}/assets/pages/scripts/form-wizard.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS --><!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="{{ asset('admin') }}/assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="{{ asset('admin') }}/assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="{{ asset('admin') }}/assets/pages/scripts/components-bootstrap-select.min.js" type="text/javascript"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
 <script src="{{ asset('admin') }}/assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>

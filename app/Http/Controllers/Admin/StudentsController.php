@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\ClassesStudent;
+use App\Model\Courses;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -30,7 +32,9 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        return view('admin.students.create');
+        // get all courses to view in page add class
+        $courses = Courses::orderBy('id', 'DESC')->get();
+        return view('admin.students.create', ['courses' => $courses]);
     }
 
 
@@ -108,6 +112,24 @@ class StudentsController extends Controller
 
         $student->save();
 
+
+        $unique_array = [];
+        // foreach classes requests
+        foreach ($request->input('classes') as $class) {
+            // add class id in array
+            array_push($unique_array, $class);
+        }
+
+        // unique array for delete duplicate value in array
+        $idsClasses = array_unique($unique_array);
+        // foreach ids classes for store in DB
+        foreach ($idsClasses as $idClasse) {
+            $studentClass = new ClassesStudent()    ;
+            $studentClass->class_id = $idClasse;
+            $studentClass->student_id = $student->id;
+            $studentClass->save();
+        }
+
         Session::flash('success', 'Student Added Successfully');
         return redirect('admin/students');
     }
@@ -126,7 +148,10 @@ class StudentsController extends Controller
         if(!$student)
             abort(503);
 
-        return view('admin.students.view', ['student' => $student]);
+        // get all Student classes fot this Student For Delete and new store
+        $studentClasses = ClassesStudent::where('student_id', $student->id)->get();
+
+        return view('admin.students.view', ['student' => $student, 'studentClasses' => $studentClasses]);
     }
 
 
@@ -143,7 +168,13 @@ class StudentsController extends Controller
         if(!$student)
             abort(503);
 
-        return view('admin.students.edit', ['student' => $student]);
+
+        // get all courses to view in page add class
+        $courses = Courses::orderBy('id', 'DESC')->get();
+        // get all student classes fot this student
+        $studentClasses = ClassesStudent::where('student_id', $student->id)->get();
+
+        return view('admin.students.edit', ['student' => $student, 'courses' => $courses, 'studentClasses' => $studentClasses]);
     }
 
 
@@ -246,6 +277,32 @@ class StudentsController extends Controller
         }
 
         $student->save();
+
+
+        // get all student classes fot this student For Delete and new store
+        $studentClasses = ClassesStudent::where('student_id', $student->id)->get();
+        // foreach for delete old student class
+        foreach ($studentClasses as $studentClass) {
+            $suClass = ClassesStudent::find($studentClass->id);
+            $suClass->delete();
+        }
+
+        $unique_array = [];
+        // foreach classes requests
+        foreach ($request->input('classes') as $class) {
+            // add class id in array
+            array_push($unique_array, $class);
+        }
+
+        // unique array for delete duplicate value in array
+        $idsClasses = array_unique($unique_array);
+        // foreach ids classes for store in DB
+        foreach ($idsClasses as $idClasse) {
+            $stuClass = new ClassesStudent();
+            $stuClass->class_id = $idClasse;
+            $stuClass->student_id = $student->id;
+            $stuClass->save();
+        }
 
         Session::flash('success', 'Students Updated Successfully');
         return redirect('admin/students');

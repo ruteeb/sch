@@ -11,22 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
-Route::get('home', 'HomeController@index')->name('home');
 
 
 
 
 /**************************************
- * Admin Controllers
+ * Admin Routes
 **************************************/
 
 Route::group(['namespace' => 'Admin'], function () {
-
 
     Route::group(['middleware' => 'adminGuest:admin'], function () {
         // Route Login
@@ -34,7 +30,6 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::post('admin/login', 'AdminController@login_post');
 
     });
-
 
     Route::group(['middleware' => 'adminWeb:admin'], function () {
 
@@ -74,6 +69,7 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::post('admin/teachers/{id}/update', 'TeachersController@update');
         Route::get('admin/teachers/{id}/active', 'TeachersController@active');
         Route::get('admin/teachers/{id}/inactive', 'TeachersController@inactive');
+        Route::get('admin/teachers/getclasses', 'TeachersController@getClasses');
 //        Route::get('admin/teachers/{id}/delete', 'TeachersController@destroy');
 //        Route::post('admin/teachers/multidelete', 'TeachersController@multidelete');
 
@@ -92,7 +88,6 @@ Route::group(['namespace' => 'Admin'], function () {
 
 
 
-
         // Route Course
         Route::get('admin/courses', 'CoursesController@index');
         Route::get('admin/courses/create', 'CoursesController@create');
@@ -104,8 +99,73 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::get('admin/courses/{id}/inactive', 'CoursesController@inactive');
 
 
+        // Route Classes
+        Route::get('admin/classes', 'ClassesController@index');
+        Route::get('admin/classes/create', 'ClassesController@create');
+        Route::post('admin/classes/store', 'ClassesController@store');
+        Route::get('admin/classes/{id}/view', 'ClassesController@view');
+        Route::get('admin/classes/{id}/edit', 'ClassesController@edit');
+        Route::post('admin/classes/{id}/update', 'ClassesController@update');
+        Route::get('admin/classes/{id}/active', 'ClassesController@active');
+        Route::get('admin/classes/{id}/inactive', 'ClassesController@inactive');
+
+
+        // Route Lessons
+        Route::get('admin/lessons', 'LessonsController@index');
+        Route::get('admin/lessons-offline', 'LessonsController@offline');
+        Route::get('admin/lessons/create', 'LessonsController@create');
+        Route::post('admin/lessons/store', 'LessonsController@store');
+        Route::get('admin/lessons/{id}/view', 'LessonsController@view');
+        Route::get('admin/lessons/{id}/edit', 'LessonsController@edit');
+        Route::post('admin/lessons/{id}/update', 'LessonsController@update');
+        Route::get('admin/lessons/{id}/active', 'LessonsController@active');
+        Route::get('admin/lessons/{id}/inactive', 'LessonsController@inactive');
+
+
+        // Route Materials
+        Route::get('admin/materials', 'MaterialsController@index');
+        Route::get('admin/materials/create', 'MaterialsController@create');
+        Route::post('admin/materials/store', 'MaterialsController@store');
+        Route::get('admin/materials/{id}/view', 'MaterialsController@view');
+        Route::get('admin/materials/{id}/edit', 'MaterialsController@edit');
+        Route::post('admin/materials/{id}/update', 'MaterialsController@update');
+        Route::get('admin/materials/{id}/active', 'MaterialsController@active');
+        Route::get('admin/materials/{id}/inactive', 'MaterialsController@inactive');
+
+
+        // Route Events
+        Route::get('admin/events', 'EventsController@index');
+        Route::get('admin/events/create', 'EventsController@create');
+        Route::post('admin/events/store', 'EventsController@store');
+        Route::get('admin/events/{id}/view', 'EventsController@view');
+        Route::get('admin/events/{id}/edit', 'EventsController@edit');
+        Route::post('admin/events/{id}/update', 'EventsController@update');
+        Route::get('admin/events/{id}/active', 'EventsController@active');
+        Route::get('admin/events/{id}/inactive', 'EventsController@inactive');
+
+
+
 
     });
 
 
 });
+
+
+/**************************************
+ * End Admin Routes
+ *************************************/
+
+
+
+
+/**************************************
+ * Start Front Routes
+ **************************************/
+
+Route::get('about', 'AboutController@index');
+
+
+/**************************************
+ * End Front Routes
+ **************************************/

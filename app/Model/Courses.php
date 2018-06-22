@@ -9,4 +9,5 @@ class Courses extends Model
     protected $table = 'courses';
 
     protected $fillable = ['title', 'description', 'image', 'active'];
+
 }

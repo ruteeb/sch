@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\Classes;
+use App\Model\ClassesTeacher;
+use App\Model\Courses;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -29,9 +32,11 @@ class TeachersController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
-{
-    return view('admin.teachers.create');
-}
+    {
+        // get all courses to view in page add class
+        $courses = Courses::orderBy('id', 'DESC')->get();
+        return view('admin.teachers.create', ['courses' => $courses]);
+    }
 
 
     /**
@@ -97,6 +102,23 @@ class TeachersController extends Controller
 
         $teacher->save();
 
+        $unique_array = [];
+        // foreach classes requests
+        foreach ($request->input('classes') as $class) {
+            // add class id in array
+            array_push($unique_array, $class);
+        }
+
+        // unique array for delete duplicate value in array
+        $idsClasses = array_unique($unique_array);
+        // foreach ids classes for store in DB
+        foreach ($idsClasses as $idClasse) {
+            $teacherClass = new ClassesTeacher();
+            $teacherClass->class_id = $idClasse;
+            $teacherClass->teacher_id = $teacher->id;
+            $teacherClass->save();
+        }
+
         Session::flash('success', 'Teacher Added Successfully');
         return redirect('admin/teachers');
     }
@@ -115,7 +137,10 @@ class TeachersController extends Controller
         if(!$teacher)
             abort(503);
 
-        return view('admin.teachers.view', ['teacher' => $teacher]);
+        // get all teacher classes fot this teacher For Delete and new store
+        $teacherClasses = ClassesTeacher::where('teacher_id', $teacher->id)->get();
+
+        return view('admin.teachers.view', ['teacher' => $teacher, 'teacherClasses' => $teacherClasses]);
     }
 
 
@@ -132,7 +157,12 @@ class TeachersController extends Controller
         if(!$teacher)
             abort(503);
 
-        return view('admin.teachers.edit', ['teacher' => $teacher]);
+        // get all courses to view in page add class
+        $courses = Courses::orderBy('id', 'DESC')->get();
+        // get all teacher classes fot this teacher
+        $teacherClasses = ClassesTeacher::where('teacher_id', $teacher->id)->get();
+
+        return view('admin.teachers.edit', ['teacher' => $teacher, 'courses' => $courses, 'teacherClasses' => $teacherClasses]);
     }
 
 
@@ -223,6 +253,32 @@ class TeachersController extends Controller
         }
 
         $teacher->save();
+
+
+        // get all teacher classes fot this teacher For Delete and new store
+        $teacherClasses = ClassesTeacher::where('teacher_id', $teacher->id)->get();
+        // foreach for delete old teacher class
+        foreach ($teacherClasses as $teacherClass) {
+            $teClass = ClassesTeacher::find($teacherClass->id);
+            $teClass->delete();
+        }
+
+        $unique_array = [];
+        // foreach classes requests
+        foreach ($request->input('classes') as $class) {
+            // add class id in array
+            array_push($unique_array, $class);
+        }
+
+        // unique array for delete duplicate value in array
+        $idsClasses = array_unique($unique_array);
+        // foreach ids classes for store in DB
+        foreach ($idsClasses as $idClasse) {
+            $teacherClass = new ClassesTeacher();
+            $teacherClass->class_id = $idClasse;
+            $teacherClass->teacher_id = $teacher->id;
+            $teacherClass->save();
+        }
 
         Session::flash('success', 'Teacher Updated Successfully');
         return redirect('admin/teachers');
@@ -321,6 +377,19 @@ class TeachersController extends Controller
 
         Session::flash('success', 'Data About Selected Deleted Successfully');
         return redirect('admin/teachers');
+    }
+
+
+    public function getClasses(Request $request)
+    {
+        if ($request->ajax()) {
+            $courseId = $request->input('course');
+
+            $classes = Classes::where('course_id', $courseId)->get();
+
+            return response()->json($classes);
+
+        }
     }
 
 }

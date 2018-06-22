@@ -130,6 +130,15 @@
                                         </p>
 
 
+                                        <p>
+                                            <strong>Classes: </strong><br>
+                                            @foreach($teacherClasses as $teacherClass)
+                                                <?php $classData = \App\Model\Classes::find($teacherClass->class_id); ?>
+                                                <span class="view_course">{{ $classData->title }} </span>
+                                            @endforeach
+                                        </p>
+
+
                                     </div><!-- /.col-md-8-->
                                 </div><!-- /.row -->
                             </div><!-- /.col-md-9 -->

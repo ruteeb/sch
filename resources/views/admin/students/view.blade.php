@@ -147,6 +147,15 @@
                                         <p>
                                             <strong>End Residence: </strong>
                                             {{ $student->end_residence }}
+
+
+
+                                        <p>
+                                            <strong>Classes: </strong><br>
+                                            @foreach($studentClasses as $studentClass)
+                                                <?php $classData = \App\Model\Classes::find($studentClass->class_id); ?>
+                                                <span class="view_course">{{ $classData->title }} </span>
+                                            @endforeach
                                         </p>
 
 

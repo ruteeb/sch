@@ -69,7 +69,7 @@
                 <div class="caption">
                     <i class=" icon-layers font-red"></i>
                     <span class="caption-subject font-red bold uppercase"> Edit Student -
-                        <span class="step-title"> Step 1 of 3 </span>
+                        <span class="step-title"> Step 1 of 4 </span>
                     </span>
                 </div>
             </div>
@@ -100,6 +100,14 @@
                                         <span class="number"> 3 </span>
                                         <span class="desc">
                                         <i class="fa fa-check"></i> Other Information </span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#tab4" data-toggle="tab" class="step">
+                                        <span class="number"> 4 </span>
+                                        <span class="desc">
+                                        <i class="fa fa-check"></i> Choose Classes </span>
                                     </a>
                                 </li>
                             </ul>
@@ -353,6 +361,62 @@
                                     <div class="clear"></div><!-- /.clear -->
                                 </div>
 
+
+                                <div class="tab-pane" id="tab4">
+                                    <h3 class="block">Choose Classes</h3>
+
+                                    <div class="col-md-6 select_multi">
+                                        <div class="form-group{{ $errors->has('course') ? ' has-error' : '' }}">
+                                            <label for="course">Course</label>
+                                            <select class="bs-select form-control" data-live-search="true" data-size="8" name="course" id="course" >
+                                                <option selected disabled="disabled" value="">Choose Course</option>
+
+                                                @foreach($courses as $course)
+                                                    <option {{ old('course') == $course->id ? 'selected' : '' }} value="{{ $course->id }}">{{ $course->title }}</option>
+                                                @endforeach
+                                            </select>
+                                            @if ($errors->has('course'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('course') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div><!-- /.col-md-6 -->
+
+
+
+                                    <div class="col-md-6 select_multi">
+                                        <div class="form-group{{ $errors->has('class') ? ' has-error' : '' }}">
+                                            <label for="classes">Class</label>
+                                            <select disabled="disabled" class="bs-select form-control" data-live-search="true" data-size="8" id="classes" >
+                                                <option selected disabled="disabled" value="">Choose Class</option>
+                                            </select>
+                                            @if ($errors->has('class'))
+                                                <span class="help-block">
+                                                    <strong>{{ $errors->first('class') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div><!-- /.col-md-6 -->
+
+
+
+                                    <div class="col-md-12">
+                                        <div id="data_classes" class="show_data">
+                                            @foreach($studentClasses as $studentClass)
+                                                <div class="class-div">
+                                                    <?php $classData = \App\Model\Classes::find($studentClass->class_id); ?>
+                                                    <p>{{ $classData->title }} <i class='fa fa-close'></i></p>
+                                                    <input type="hidden" value="{{ $classData->id }}" name="classes[]">
+                                                    <script>arr.push({{ $classData->id }});</script>
+                                                </div><!-- /.class-div -->
+                                            @endforeach
+                                        </div><!-- /.show-data -->
+                                    </div><!-- /.col-md-12 -->
+
+                                    <div class="clear"></div><!-- /.clear -->
+                                </div>
+
                             </div>
                         </div>
 
@@ -378,4 +442,72 @@
         </div>
 
     </div><!-- /.page-content -->
+@stop
+
+
+
+
+@section('js')
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $(".fa-close").click(function() {
+                $(this).parent().parent().remove();
+            });
+
+
+            $('#course').on('change', function () {
+                $("#classes").empty();
+                $.ajax({
+                    url: '{{ url("admin/teachers/getclasses") }}',
+                    type: 'get',
+                    dataType: 'json',
+                    data: {'course': this.value, _token: '{{csrf_token()}}'},
+                    success: function (data) {
+                        $("#classes").prop("disabled", false);
+                        $("#classes").append('<option selected disabled="disabled" value="">Choose Class</option> ');
+                        for (var x = 0; x < data.length; x++) {
+                            $("#classes").append('<option data-name="' + data[x].title + '" value="' + data[x].id + '">' + data[x].title + '</option> ');
+                            $("#classes").selectpicker("refresh");
+                        }
+                    }
+                });
+            });
+
+
+            $('#classes').on('change', function () {
+                if (this.value != "") {
+                    if (arr.indexOf(this.value) > -1) {
+                        alert('This item has already been selected');
+                    } else {
+                        arr.push(this.value);
+                        var classDiv = $("<div class=\"class-div\" />");
+                        var dataName = $("<p>" + $(this).find(':selected').attr('data-name') + "</p>");
+                        var inputValue = $("<input type='hidden' value='"+this.value+"' name='classes[]'>");
+                        var secriptCode = $("<script> $('.fa-close').click(function () {alert('delete');$(this).parent().remove();}); ");
+                        var icon = $("<i class='fa fa-close'></i> ");
+                        icon.click(function() {
+                            $(this).parent().parent().remove();
+                        });
+                        classDiv.append(dataName);
+                        dataName.append(icon);
+                        classDiv.append(inputValue);
+                        $("#data_classes").append(classDiv.append(secriptCode));
+                    }
+
+                }
+            });
+        });
+
+//        arr.toString();
+//        document.getElementById("sow").innerHTML = arr;
+
+    </script>
+@stop
+
+
+@section('css')
+    <script>
+        var arr = [];
+    </script>
 @stop

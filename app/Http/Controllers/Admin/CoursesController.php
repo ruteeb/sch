@@ -198,7 +198,7 @@ class CoursesController extends Controller
         if(!$course)
             abort(503);
 
-        $course->active = 2;
+        $course->active = 0;
         $course->save();
 
         Session::flash('success', 'Course Inactivation Successfully');

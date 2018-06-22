@@ -1,95 +1,145 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+@section('title')
+    Oranje Ster
+@stop
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
 
-            .full-height {
-                height: 100vh;
-            }
+@section('content')
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+    <main>
+        <section class="hero_single version_2">
+            <div class="wrapper">
+                <div class="container">
+                    <h3>WAT ZOU JE LEREN?</h3>
+                    <p>Vergroot uw expertise in zaken, technologie en persoonlijke ontwikkeling</p>
+                    <form>
+                        <div id="custom-search-input">
+                            <div class="input-group">
+                                <input type="text" class=" search-query" placeholder="Ex. Architectuur, specialisatie...">
+                                <input type="submit" class="btn_search" value="Search">
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
+        </section>
+        <!-- /hero_single -->
+
+        <div class="features clearfix">
+            <div class="container">
+                <ul>
+                    <li><i class="pe-7s-study"></i>
+                        <h4>+200 Cursussen</h4><span>Verken verschillende verse onderwerpen</span>
+                    </li>
+                    <li><i class="pe-7s-cup"></i>
+                        <h4>Deskundige Leraren</h4><span>Vind de juiste instructeur voor jou</span>
+                    </li>
+                    <li><i class="pe-7s-target"></i>
+                        <h4>Focus op doelwit</h4><span>Vergroot uw persoonlijke expertise</span>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </body>
-</html>
+        <!-- /features -->
+
+        <div class="container-fluid margin_120_0 courses_home">
+            <div class="main_title_2">
+                <span><em></em></span>
+                <h2>Oranje Populaire Cursussen</h2>
+                <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+            </div>
+            <div id="reccomended" class="owl-carousel owl-theme">
+
+                @foreach($courses as $course)
+                <div class="item">
+                    <div class="box_grid">
+                        <figure>
+                            <a href="{{ url('courses/'.$course->id.'/details') }}">
+                                <div class="preview"><span>Preview course</span></div>
+                                <img src="{{ asset('admin/files/images/courses/') }}/{{ $course->image }}" class="img-fluid" alt=""></a>
+                        </figure>
+
+                        <div class="wrapper">
+                            <small>Categorie</small>
+                            <h3>{{ str_limit($course->title,30) }}</h3>
+                            <p>{{ str_limit($course->description, 140) }}</p>
+                        </div>
+                        <ul>
+                            <li><a href="{{ url('courses/'.$course->id.'/details') }}">Deatile Course</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /item -->
+                @endforeach
+
+            </div>
+            <!-- /carousel -->
+            <div class="container">
+                <p class="btn_home_align"><a href="{{ url('courses') }}" class="btn_1 rounded">Bekijk alle cursussen</a></p>
+            </div>
+            <!-- /container -->
+            <hr>
+        </div>
+        <!-- /container -->
+
+        @if(!empty($materials))
+        <div class="container margin_30_95 courses_home">
+            <div class="main_title_2">
+                <span><em></em></span>
+                <h2>Oranje Categorieën Cursussen</h2>
+                <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+            </div>
+            <div class="row">
+
+                @foreach($materials as $material)
+                <div class="col-lg-4 col-md-6 wow" data-wow-offset="150">
+                    <a href="{{ url('materials/'.$material->id.'/details') }}" class="grid_item">
+                        <figure class="block-reveal">
+                            <div class="block-horizzontal"></div>
+                            <img src="{{ asset('admin/files/images/materials') }}/{{ $material->image }}" class="img-fluid" alt="">
+                            <div class="info">
+                                <h3>{{ $material->title }}</h3>
+                            </div>
+                        </figure>
+                    </a>
+                </div>
+                @endforeach
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+        @endif
+
+
+        @if(!empty($events))
+        <div class="call_section events">
+            <div class="main_title_2">
+                <span><em></em></span>
+                <h2>Our Events</h2>
+                <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+            </div>
+            <div class="container clearfix">
+                <div class="row">
+                    @foreach($events as $event)
+                    <div class=" col-md-6 wow" data-wow-offset="250">
+                        <div class="block-reveal">
+                            <div class="block-vertical"></div>
+                            <div class="box_1">
+                                <h3>{{ $event->title }}</h3>
+                                <p>{{ str_limit($event->content, 200) }} </p>
+                                <a href="{{ url('events/'.$event->id.'/details') }}" class="btn_1 rounded">Read more</a>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div><!-- /.row -->
+            </div>
+        </div>
+        <!--/call_section-->
+        @endif
+
+    </main>
+    <!-- /main -->
+@stop
