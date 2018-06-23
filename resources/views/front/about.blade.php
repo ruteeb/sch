@@ -2,7 +2,7 @@
 
 
 @section('title')
-
+    Over  Oranje
 @stop
 
 
@@ -83,7 +83,7 @@
                     <div class="col-lg-6 wow" data-wow-offset="150">
                         <figure class="block-reveal">
                             <div class="block-horizzontal"></div>
-                            <img src="img/course_1.jpg" class="img-fluid" alt="">
+                            <img src="{{ asset('front') }}/img/course_1.jpg" class="img-fluid" alt="">
                         </figure>
                     </div>
                     <div class="col-lg-5">
@@ -109,35 +109,35 @@
                     <a href="#0">
                         <div class="title">
                             <h4>Julia Holmes<em>CEO</em></h4>
-                        </div><img src="img/1_carousel.jpg" alt="">
+                        </div><img src="{{ asset('front') }}/img/1_carousel.jpg" alt="">
                     </a>
                 </div>
                 <div class="item">
                     <a href="#0">
                         <div class="title">
                             <h4>Lucas Smith<em>Marketing</em></h4>
-                        </div><img src="img/2_carousel.jpg" alt="">
+                        </div><img src="{{ asset('front') }}/img/2_carousel.jpg" alt="">
                     </a>
                 </div>
                 <div class="item">
                     <a href="#0">
                         <div class="title">
                             <h4>Paul Stephens<em>Business strategist</em></h4>
-                        </div><img src="img/3_carousel.jpg" alt="">
+                        </div><img src="{{ asset('front') }}/img/3_carousel.jpg" alt="">
                     </a>
                 </div>
                 <div class="item">
                     <a href="#0">
                         <div class="title">
                             <h4>Pablo Himenez<em>Customer Service</em></h4>
-                        </div><img src="img/4_carousel.jpg" alt="">
+                        </div><img src="{{ asset('front') }}/img/4_carousel.jpg" alt="">
                     </a>
                 </div>
                 <div class="item">
                     <a href="#0">
                         <div class="title">
                             <h4>Andrew Stuttgart<em>Admissions</em></h4>
-                        </div><img src="img/5_carousel.jpg" alt="">
+                        </div><img src="{{ asset('front') }}/img/5_carousel.jpg" alt="">
                     </a>
                 </div>
             </div>

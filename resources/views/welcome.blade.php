@@ -88,7 +88,7 @@
         <div class="container margin_30_95 courses_home">
             <div class="main_title_2">
                 <span><em></em></span>
-                <h2>Oranje Categorieën Cursussen</h2>
+                <h2>Oranje Materialen</h2>
                 <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
             </div>
             <div class="row">
@@ -117,7 +117,7 @@
         <div class="call_section events">
             <div class="main_title_2">
                 <span><em></em></span>
-                <h2>Our Events</h2>
+                <h2>Evenementen</h2>
                 <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
             </div>
             <div class="container clearfix">

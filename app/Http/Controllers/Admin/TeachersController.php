@@ -95,7 +95,7 @@ class TeachersController extends Controller
             // Rename Image
             $newImage = sha1(uniqid('_m').time()).$image->getClientOriginalName();
             // Move Image
-            $image->move('admin/files/images/teachers', $newImage);
+            $image->move('admin/files/images/users', $newImage);
             // Store Image
             $teacher->image = $newImage;
         }
@@ -235,12 +235,12 @@ class TeachersController extends Controller
 
             // Move Image
             // IF Move image return true
-            if($image->move('admin/files/images/teachers', $newImage))
+            if($image->move('admin/files/images/users', $newImage))
             {
                 // if exist path old image return true
-                if(file_exists('admin/files/images/teachers/'.$oldImage)) {
+                if(file_exists('admin/files/images/users/'.$oldImage)) {
                     // Delete old image
-                    File::Delete('admin/files/images/teachers/'.$oldImage);
+                    File::Delete('admin/files/images/users/'.$oldImage);
                 }
             }
             // else => upload new image
@@ -342,7 +342,7 @@ class TeachersController extends Controller
 
         $teacher->delete();
         // Delete Image
-        File::Delete('admin/files/images/teachers/'.$teacher->image);
+        File::Delete('admin/files/images/users/'.$teacher->image);
 
         Session::flash('success', 'Teacher Deleted Successfully');
         return redirect('admin/teachers');
@@ -368,7 +368,7 @@ class TeachersController extends Controller
                 }
                 // teachers Delete
                 $teacher->Delete();
-                File::Delete('admin/files/images/teachers/'.$teacher->image);
+                File::Delete('admin/files/images/users/'.$teacher->image);
             }
         } else {
             Session::flash('warning', 'Not Selected Data Please Select Data');

@@ -75,7 +75,7 @@
                     <input  type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} />Remember
                     <span></span>
                 </label>
-                <small><a href="#">Forgot password?</a></small>
+                <small><a href="{{ url('password/reset') }}">Forgot password?</a></small>
             </div>
 
             <button type="submit" class="btn_1 rounded full-width add_top_60">Login to Oranje</button>

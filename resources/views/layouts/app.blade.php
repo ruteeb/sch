@@ -45,9 +45,9 @@
 
             @if(auth()->check())
             <li class="hidden_tablet user-profile dropdown">
-                <button class="dropbtn"><img class="img-user" src="{{ asset('admin/files/images/students/')."/".auth()->user()->image }}"> <span>{{ auth()->user()->first_name }}</span></button>
+                <button class="dropbtn"><img class="img-user" src="{{ asset('admin/files/images/users/')."/".auth()->user()->image }}"> <span>{{ auth()->user()->first_name }}</span></button>
                 <div class="dropdown-content">
-                    <a href="#"><i class="fa fa-user"></i> Profile</a>
+                    <a href="{{ url('profile') }}"><i class="fa fa-user"></i> Profile</a>
                     <a href="#"><i class="fa fa-book"></i> My Classes</a>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i>Logout</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -71,6 +71,8 @@
                 <li><span><a href="{{ url('/') }}">Home</a></span></li>
                 <li><span><a href="{{ url('about') }}">Over Ons</a></span></li>
                 <li><span><a href="{{ url('courses') }}">Cursussen</a></span></li>
+                <li><span><a href="{{ url('materials') }}">Materialen</a></span></li>
+                <li><span><a href="{{ url('events') }}">Evenementen</a></span></li>
                 <li><span><a href="{{ url('contact') }}">Contact Us</a></span></li>
             </ul>
         </nav>
@@ -108,12 +110,12 @@
                 <div class="col-lg-3 col-md-6 ml-lg-auto">
                     <h5>Useful links</h5>
                     <ul class="links">
-                        <li><a href="#0">Home</a></li>
-                        <li><a href="#0">Over Ons</a></li>
-                        <li><a href="#0">Cursussen</a></li>
-                        <li><a href="#0">Log in</a></li>
-                        <li><a href="#0">Registreren</a></li>
-                        <li><a href="#0">Contact Us</a></li>
+                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li><a href="{{ url('about') }}">Over Ons</a></li>
+                        <li><a href="{{ url('courses') }}">Cursussen</a></li>
+                        <li><a href="{{ url('materials') }}">Materialen</a></li>
+                        <li><a href="{{ url('events') }}">Evenementen</a></li>
+                        <li><a href="{{ url('contact') }}">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -122,16 +124,6 @@
                         <li><a href="tel://61280932400"><i class="ti-mobile"></i> + 61 23 8093 3400</a></li>
                         <li><a href="/cdn-cgi/l/email-protection#30595e565f704554555d511e535f5d"><i class="ti-email"></i> <span class="__cf_email__" data-cfemail="422b2c242d023726272f236c212d2f">[email&#160;protected]</span></a></li>
                     </ul>
-                    <div id="newsletter">
-                        <h6>Newsletter</h6>
-                        <div id="message-newsletter"></div>
-                        <form method="post" action="assets/newsletter.php" name="newsletter_form" id="newsletter_form">
-                            <div class="form-group">
-                                <input type="email" name="email_newsletter" id="email_newsletter" class="form-control" placeholder="Your email">
-                                <input type="submit" value="Submit" id="submit-newsletter">
-                            </div>
-                        </form>
-                    </div>
                 </div>
             </div>
             <!--/row-->
@@ -154,11 +146,11 @@
 <!-- page -->
 
 <!-- COMMON SCRIPTS -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/f2bf09f8/cloudflare-static/email-decode.min.js"></script>
 <script src="{{ asset('front') }}/js/jquery-2.2.4.min.js"></script>
 <script src="{{ asset('front') }}/js/common_scripts.js"></script>
 <script src="{{ asset('front') }}/js/main.js"></script>
 <script src="{{ asset('front') }}/assets/validate.js"></script>
+<script src="{{ asset('front') }}/js/work.js"></script>
 @yield('js')
 
 </body>

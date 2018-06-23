@@ -107,7 +107,7 @@
                                         <td>{{ $teacher->first_name }}</td>
                                         <td>{{ $teacher->last_name }}</td>
                                         <td>{{ $teacher->email }}</td>
-                                        <td><img class="view_index" src="{{ asset('admin/files/images/teachers') }}/{{ $teacher->image }}"> </td>
+                                        <td><img class="view_index" src="{{ asset('admin/files/images/users') }}/{{ $teacher->image }}"> </td>
                                         <td>{{ $teacher->created_at->format('d M Y') }}</td>
                                         <td>
                                             <a href="{{ url('admin/teachers/'.$teacher->id.'/edit') }}" class="btn btn-info"><i class="fa fa-refresh"></i> Edit</a>

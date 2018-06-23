@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('home', 'HomeController@index');
 
 Auth::routes();
 
@@ -163,8 +164,43 @@ Route::group(['namespace' => 'Admin'], function () {
  * Start Front Routes
  **************************************/
 
-Route::get('about', 'AboutController@index');
 
+Route::group(['namespace' => 'Front'], function () {
+
+
+    Route::group(['middleware' => 'auth'], function () {
+        // User Profile
+        Route::get('profile', 'UserController@index');
+        Route::post('profile/update', 'UserController@update');
+    });
+
+
+    // Route About
+    Route::get('about', 'AboutController@index');
+
+    // Route Courses
+    Route::get('courses', 'CoursesController@index');
+    Route::get('courses/{id}/details', 'CoursesController@view');
+
+
+    // Route Materials
+    Route::get('materials', 'MaterialsController@index');
+    Route::get('materials/{id}/details', 'MaterialsController@view');
+
+
+    // Route Events
+    Route::get('events', 'EventsController@index');
+    Route::get('events/{id}/details', 'EventsController@view');
+
+
+    // Route Contact
+    Route::get('contact', 'ContactController@index');
+    Route::post('contact/send/message', 'ContactController@sendMessage');
+
+
+    // Route Online
+    Route::get('online', 'VideoController@index');
+});
 
 /**************************************
  * End Front Routes

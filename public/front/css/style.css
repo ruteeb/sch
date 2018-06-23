@@ -840,7 +840,7 @@ footer ul li a {
 }
 
 footer ul li a:hover {
-    color: #3f9fff;
+    color: #f6931e;
     opacity: 1
 }
 
@@ -1118,16 +1118,6 @@ iframe {
 
 #hero_video div p strong {
     font-weight: 600
-}
-
-video {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    opacity: .4;
-    width: 100%
 }
 
 .header-video--media,
@@ -3064,7 +3054,7 @@ ul#cat_nav li {
 }
 
 .box_detail {
-    padding: 25px 25px 15px;
+    padding: 15px;
     border: 1px solid #ededed;
     background-color: #f8f8f8;
     -webkit-border-radius: 5px;

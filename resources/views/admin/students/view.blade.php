@@ -69,7 +69,7 @@
                             <div class="col-md-3">
                                 <ul class="list-unstyled profile-nav">
                                     <li>
-                                        <img class="full_width"  src="{{ asset('admin/files/images/students') }}/{{ $student->image }}">
+                                        <img class="full_width"  src="{{ asset('admin/files/images/users') }}/{{ $student->image }}">
                                     </li>
                                 </ul>
                             </div><!-- /.col-md-3 -->

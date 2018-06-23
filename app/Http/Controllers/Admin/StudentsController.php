@@ -105,7 +105,7 @@ class StudentsController extends Controller
             // Rename Image
             $newImage = sha1(uniqid('_m').time()).$image->getClientOriginalName();
             // Move Image
-            $image->move('admin/files/images/students', $newImage);
+            $image->move('admin/files/images/users', $newImage);
             // Store Image
             $student->image = $newImage;
         }
@@ -259,12 +259,12 @@ class StudentsController extends Controller
 
             // Move Image
             // IF Move image return true
-            if($image->move('admin/files/images/students', $newImage))
+            if($image->move('admin/files/images/users', $newImage))
             {
                 // if exist path old image return true
-                if(file_exists('admin/files/images/students/'.$oldImage)) {
+                if(file_exists('admin/files/images/users/'.$oldImage)) {
                     // Delete old image
-                    File::Delete('admin/files/images/students/'.$oldImage);
+                    File::Delete('admin/files/images/users/'.$oldImage);
                 }
             }
             // else => upload new image
