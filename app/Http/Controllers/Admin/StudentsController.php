@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Model\ClassesStudent;
+use App\Model\ClassesTeacher;
 use App\Model\Courses;
 use App\User;
 use Illuminate\Http\Request;
@@ -124,9 +124,9 @@ class StudentsController extends Controller
         $idsClasses = array_unique($unique_array);
         // foreach ids classes for store in DB
         foreach ($idsClasses as $idClasse) {
-            $studentClass = new ClassesStudent()    ;
+            $studentClass = new ClassesTeacher()    ;
             $studentClass->class_id = $idClasse;
-            $studentClass->student_id = $student->id;
+            $studentClass->user_id = $student->id;
             $studentClass->save();
         }
 
@@ -149,7 +149,7 @@ class StudentsController extends Controller
             abort(503);
 
         // get all Student classes fot this Student For Delete and new store
-        $studentClasses = ClassesStudent::where('student_id', $student->id)->get();
+        $studentClasses = ClassesTeacher::where('user_id', $student->id)->get();
 
         return view('admin.students.view', ['student' => $student, 'studentClasses' => $studentClasses]);
     }
@@ -172,7 +172,7 @@ class StudentsController extends Controller
         // get all courses to view in page add class
         $courses = Courses::orderBy('id', 'DESC')->get();
         // get all student classes fot this student
-        $studentClasses = ClassesStudent::where('student_id', $student->id)->get();
+        $studentClasses = ClassesTeacher::where('user_id', $student->id)->get();
 
         return view('admin.students.edit', ['student' => $student, 'courses' => $courses, 'studentClasses' => $studentClasses]);
     }
@@ -280,10 +280,10 @@ class StudentsController extends Controller
 
 
         // get all student classes fot this student For Delete and new store
-        $studentClasses = ClassesStudent::where('student_id', $student->id)->get();
+        $studentClasses = ClassesTeacher::where('user_id', $student->id)->get();
         // foreach for delete old student class
         foreach ($studentClasses as $studentClass) {
-            $suClass = ClassesStudent::find($studentClass->id);
+            $suClass = ClassesTeacher::find($studentClass->id);
             $suClass->delete();
         }
 
@@ -298,9 +298,9 @@ class StudentsController extends Controller
         $idsClasses = array_unique($unique_array);
         // foreach ids classes for store in DB
         foreach ($idsClasses as $idClasse) {
-            $stuClass = new ClassesStudent();
+            $stuClass = new ClassesTeacher();
             $stuClass->class_id = $idClasse;
-            $stuClass->student_id = $student->id;
+            $stuClass->user_id = $student->id;
             $stuClass->save();
         }
 

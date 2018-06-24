@@ -147,6 +147,19 @@ Route::group(['namespace' => 'Admin'], function () {
 
 
 
+        // Route invoices
+        Route::get('admin/invoices', 'InvoiceController@index');
+        Route::get('admin/invoices/create', 'InvoiceController@create');
+        Route::post('admin/invoices/store', 'InvoiceController@store');
+        Route::get('admin/invoices/{id}/view', 'InvoiceController@view');
+        Route::get('admin/invoices/{id}/edit', 'InvoiceController@edit');
+        Route::post('admin/invoices/{id}/update', 'InvoiceController@update');
+        Route::get('admin/invoices/{id}/active', 'InvoiceController@active');
+        Route::get('admin/invoices/{id}/inactive', 'InvoiceController@inactive');
+
+
+
+
     });
 
 
@@ -172,6 +185,15 @@ Route::group(['namespace' => 'Front'], function () {
         // User Profile
         Route::get('profile', 'UserController@index');
         Route::post('profile/update', 'UserController@update');
+
+        // Route Online
+        Route::get('online', 'VideoController@classOnline');
+        // Route Main Class Details
+        Route::get('maindetailsclass', 'VideoController@mainDetailsClass');
+        // Route Main Class Details
+        Route::get('mainclass', 'VideoController@mainClass');
+        // Route lesson recording
+        Route::get('lessonrecording', 'VideoController@lessonRecording');
     });
 
 
@@ -198,8 +220,10 @@ Route::group(['namespace' => 'Front'], function () {
     Route::post('contact/send/message', 'ContactController@sendMessage');
 
 
-    // Route Online
-    Route::get('online', 'VideoController@index');
+    Route::get('search', 'SearchController@searchGet');
+
+
+
 });
 
 /**************************************

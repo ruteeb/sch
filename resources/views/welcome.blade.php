@@ -14,10 +14,10 @@
                 <div class="container">
                     <h3>WAT ZOU JE LEREN?</h3>
                     <p>Vergroot uw expertise in zaken, technologie en persoonlijke ontwikkeling</p>
-                    <form>
+                    <form role="search" action="{{ url('search') }}" id="searchform" method="get">
                         <div id="custom-search-input">
                             <div class="input-group">
-                                <input type="text" class=" search-query" placeholder="Ex. Architectuur, specialisatie...">
+                                <input  name="q" class=" search-query" type="search" placeholder="cursussen Zoeken..." />
                                 <input type="submit" class="btn_search" value="Search">
                             </div>
                         </div>

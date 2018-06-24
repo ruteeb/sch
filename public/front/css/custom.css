@@ -102,11 +102,11 @@ a {
     display: none;
     position: absolute;
     background-color: #fff;
-    min-width: 160px;
+    min-width: 200px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     margin-top: 15px;
-    margin-left: 9px;
+    margin-left: -67px;
 }
 
 .user-profile .dropdown-content:before {
@@ -420,4 +420,108 @@ a {
     resize: vertical;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+
+
+.sections-class,
+.join-classes {
+    border: 1px solid #ccc;
+    padding: 30px 20px;
+    background-color: #fff;
+}
+
+.join-classes {
+    height: 498px;
+    overflow-y: auto;
+}
+
+.join-classes .course-with-classes {
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.join-classes .course-with-classes:last-child {
+    border-bottom: 0;
+}
+
+.join-classes .course-with-classes p {
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: 16px;
+    color: #f6931e;
+}
+
+.join-classes .course-with-classes ul {
+    width: 100%;
+    margin-left: 12px;
+    margin-top: 7px;
+    margin-bottom: 0;
+}
+
+.join-classes .course-with-classes ul li {
+    padding-bottom: 5px;
+}
+
+.join-classes .course-with-classes ul li a {
+    color: #333;
+    font-size: 15px;
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    transition: all .4s ease;
+}
+
+.join-classes .course-with-classes ul li a i {
+    color: #f6931e;
+    position: relative;
+    top: 1px;
+    margin-right: 5px;
+}
+
+.join-classes .course-with-classes ul li a:hover {
+    color: #f6931e;
+}
+
+.sections-class h4 {
+    text-align: center;
+    color: #f6931e;
+    margin-bottom: 10px;
+}
+
+.sections-class .sec-class {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    background-color: #fff;
+    height: 400px;
+}
+
+.sections-class .sec-class a {
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    color: #444;
+    font-size: 15px;
+    overflow-y: auto;
+
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    transition: all .4s ease;
+}
+
+.sections-class .sec-class a:hover {
+    color: #f6931e;
+}
+
+
+.not-search {
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 0;
+    width: 100%;
+    padding: 50px;
+    color: #444;
 }

@@ -168,6 +168,14 @@
                 </li>
 
 
+                <li class="nav-item ">
+                    <a href="{{ url('admin/invoices') }}" class="nav-link nav-toggle">
+                        <img class="icon_sidebar" src="{{ asset('admin/assets/img/icon/invoice.png') }}">
+                        <span class="title">Invoices</span>
+                    </a>
+                </li>
+
+
             </ul>
         </div>
         <!-- END SIDEBAR -->

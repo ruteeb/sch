@@ -115,7 +115,7 @@ class TeachersController extends Controller
         foreach ($idsClasses as $idClasse) {
             $teacherClass = new ClassesTeacher();
             $teacherClass->class_id = $idClasse;
-            $teacherClass->teacher_id = $teacher->id;
+            $teacherClass->user_id = $teacher->id;
             $teacherClass->save();
         }
 
@@ -138,7 +138,7 @@ class TeachersController extends Controller
             abort(503);
 
         // get all teacher classes fot this teacher For Delete and new store
-        $teacherClasses = ClassesTeacher::where('teacher_id', $teacher->id)->get();
+        $teacherClasses = ClassesTeacher::where('user_id', $teacher->id)->get();
 
         return view('admin.teachers.view', ['teacher' => $teacher, 'teacherClasses' => $teacherClasses]);
     }
@@ -160,7 +160,7 @@ class TeachersController extends Controller
         // get all courses to view in page add class
         $courses = Courses::orderBy('id', 'DESC')->get();
         // get all teacher classes fot this teacher
-        $teacherClasses = ClassesTeacher::where('teacher_id', $teacher->id)->get();
+        $teacherClasses = ClassesTeacher::where('user_id', $teacher->id)->get();
 
         return view('admin.teachers.edit', ['teacher' => $teacher, 'courses' => $courses, 'teacherClasses' => $teacherClasses]);
     }
@@ -256,7 +256,7 @@ class TeachersController extends Controller
 
 
         // get all teacher classes fot this teacher For Delete and new store
-        $teacherClasses = ClassesTeacher::where('teacher_id', $teacher->id)->get();
+        $teacherClasses = ClassesTeacher::where('user_id', $teacher->id)->get();
         // foreach for delete old teacher class
         foreach ($teacherClasses as $teacherClass) {
             $teClass = ClassesTeacher::find($teacherClass->id);
@@ -276,7 +276,7 @@ class TeachersController extends Controller
         foreach ($idsClasses as $idClasse) {
             $teacherClass = new ClassesTeacher();
             $teacherClass->class_id = $idClasse;
-            $teacherClass->teacher_id = $teacher->id;
+            $teacherClass->user_id = $teacher->id;
             $teacherClass->save();
         }
 

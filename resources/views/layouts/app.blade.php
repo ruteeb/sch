@@ -48,7 +48,10 @@
                 <button class="dropbtn"><img class="img-user" src="{{ asset('admin/files/images/users/')."/".auth()->user()->image }}"> <span>{{ auth()->user()->first_name }}</span></button>
                 <div class="dropdown-content">
                     <a href="{{ url('profile') }}"><i class="fa fa-user"></i> Profile</a>
-                    <a href="#"><i class="fa fa-book"></i> My Classes</a>
+                    <a href="{{ url('online') }}"><i class="fa fa-play"></i> Class Online</a>
+                    <a href="{{ url('mainclass') }}"><i class="fa fa-bars"></i> Main Class</a>
+                    <a href="{{ url('maindetailsclass') }}"><i class="fa fa-book"></i> Main Class Gegevens</a>
+                    <a href="{{ url('lessonrecording') }}"><i class="fa fa-play"></i> Lessons Recording</a>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i>Logout</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
@@ -79,8 +82,8 @@
         <!-- Search Menu -->
         <div class="search-overlay-menu">
             <span class="search-overlay-close"><span class="closebt"><i class="ti-close"></i></span></span>
-            <form role="search" id="searchform" method="get">
-                <input value="" name="q" type="search" placeholder="Zoeken..." />
+            <form role="search" action="{{ url('search') }}" id="searchform" method="get">
+                <input  name="q" type="search" placeholder="Zoeken..." />
                 <button type="submit"><i class="icon_search"></i>
                 </button>
             </form>

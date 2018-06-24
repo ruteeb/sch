@@ -27,6 +27,8 @@ class CreateInvoicesTable extends Migration
             $table->foreign('created_by')
                 ->references('id')->on('admins')
                 ->onUpdate('cascade')->onDelete('cascade');
+
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }

@@ -2,7 +2,7 @@
 
 
 @section('title')
-    Klasse Online
+    Lesson Recording
 @stop
 
 
@@ -13,7 +13,7 @@
         <section id="hero_in" class="general">
             <div class="wrapper">
                 <div class="container">
-                    <h1 class="fadeInUp"><span></span>Klasse Online</h1>
+                    <h1 class="fadeInUp"><span></span>Lesson Recording</h1>
                 </div>
             </div>
         </section>
@@ -31,7 +31,7 @@
                         <div class="chat-video">
                             <h3>Chat</h3>
 
-                            <div class="section-messages">
+                            <div style="height: 385px;" class="section-messages">
                                 <p>
                                     <strong>Ahmed:</strong><br>
                                     Hello Test Hello Hello
@@ -74,56 +74,9 @@
                                     Hello Test Hello Hello
                                 </p>
                             </div><!-- /.section-messages -->
-
-
-                            <div class="send-message">
-                                <form>
-                                    <input type="text" name="message">
-                                    <button type="submit"><img src="{{ asset('front/img/icons/send.png') }}" ></button>
-                                    <div class="clear"></div>
-                                </form>
-                            </div>
                         </div>
                     </div><!-- /.col-md-3 -->
                 </div><!-- /.row -->
-
-                <div class="row">
-                    <div class="col-md-3">
-                        <video class="small-video" src="{{ asset('front/11.mp4') }}" controls ></video>
-                    </div><!-- /.col-md-3 -->
-
-                    <div class="col-md-3">
-                        <video class="small-video" src="{{ asset('front/11.mp4') }}" controls ></video>
-                    </div><!-- /.col-md-3 -->
-
-                    <div class="col-md-3">
-                        <video class="small-video" src="{{ asset('front/11.mp4') }}" controls ></video>
-                    </div><!-- /.col-md-3 -->
-
-                    <div class="col-md-3">
-                        <div class="text-center hand-style">
-                            <img class="hand-hold-white" src="{{ asset('front/img/icons/hold2.png') }}">
-                            <img class="hand-hold-red" src="{{ asset('front/img/icons/hold.png') }}">
-                        </div>
-                    </div><!-- /.col-md-3 -->
-
-                    <div class="col-md-3">
-                        <video class="small-video" src="{{ asset('front/11.mp4') }}" controls ></video>
-                    </div><!-- /.col-md-3 -->
-
-                    <div class="col-md-3">
-                        <video class="small-video" src="{{ asset('front/11.mp4') }}" controls ></video>
-                    </div><!-- /.col-md-3 -->
-
-                    <div class="col-md-3">
-                        <video class="small-video" src="{{ asset('front/11.mp4') }}" controls ></video>
-                    </div><!-- /.col-md-3 -->
-
-                    <div class="col-md-3">
-                        <video class="small-video" src="{{ asset('front/11.mp4') }}" controls ></video>
-                    </div><!-- /.col-md-3 -->
-                </div><!-- /.row -->
-
 
                 <div class="row">
                     <div class="col-md-12">
